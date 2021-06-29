@@ -4,7 +4,9 @@ import './App.css';
 function App() {
 	return (
 		<div className='App'>
-			<h1>guessblue?</h1>
+			<h1>
+				guess<span>blue?</span>
+			</h1>
 		</div>
 	);
 }
