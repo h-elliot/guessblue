@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Header.css';
+import './styles/Header.css';
 import { Cross as Hamburger } from 'hamburger-react';
 import {
 	BrowserRouter as Router,
@@ -8,19 +8,18 @@ import {
 	Link,
 	NavLink,
 } from 'react-router-dom';
+import Nav from './Nav';
 
 function Header() {
 	// setState for the hamburger nav
 	const [isOpen, setOpen] = useState(false);
 
-	function toggleMenu() {}
-
 	return (
-		<header>
-			<h1>
-				guess<span>blue?</span>
-			</h1>
-			<container id='hamburgerMenu'>
+		<>
+			<header>
+				<h1 className='logo'>
+					guess<span>blue?</span>
+				</h1>
 				<Hamburger
 					toggled={isOpen}
 					toggle={setOpen}
@@ -34,26 +33,17 @@ function Header() {
 					}}
 					direction='left'
 					color='turquoise'
+					rounded
+					distance='lg'
+					size={42}
 					label='Show menu'
 				/>
-				<Router>
-					<ul style={{ display: isOpen ? 'block' : 'none' }}>
-						<li>
-							<Link to='/rules'>Rules</Link>
-						</li>
-						<li>
-							<Link to='/invite'>New Game</Link>
-						</li>
-						<li>
-							<Link to='/invite'>Invite</Link>
-						</li>
-						<li>
-							<Link to='/leaderboard'>Leaderboard</Link>
-						</li>
-					</ul>
-				</Router>
-			</container>
-		</header>
+			</header>
+			<br />
+			<nav style={{ display: isOpen ? 'block' : 'none' }}>
+				<Nav />
+			</nav>
+		</>
 	);
 }
 

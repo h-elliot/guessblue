@@ -1,0 +1,19 @@
+nav {
+	top: 10vh;
+	right: 3%;
+	z-index: 200;
+	float: right;
+	position: fixed;
+	width: 40%;
+	border-radius: 5px;
+	box-shadow: -3px 3px 6px inset #191b29;
+}
+
+ul {
+	list-style: none;
+	padding: 2px;
+}
+
+li {
+	padding: 7%;
+}

@@ -1,9 +1,15 @@
 body {
-	margin: 0;
+	width: 100%;
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: rgb(48, 46, 61);
+}
+
+root {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 code {
@@ -13,6 +19,7 @@ code {
 
 a {
 	color: turquoise;
+	text-decoration: none;
 }
 a:hover {
 	color: cyan;

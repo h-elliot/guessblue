@@ -2,7 +2,8 @@ import './fonts.css';
 import './App.css';
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import Header from './components/Header/Header';
+import Header from './components/Header';
+import ClueInput from './components/Seer/ClueInput';
 
 function App() {
 	const [player, setPlayer] = useState('');
@@ -31,7 +32,9 @@ function App() {
 			<header>
 				<Header />
 			</header>
-			<main></main>
+			<main>
+				<ClueInput />
+			</main>
 		</div>
 	);
 }
