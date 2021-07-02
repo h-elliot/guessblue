@@ -17,6 +17,9 @@ const io = socketIO(server, {
 
 app.use(cors());
 
+// not sure why i need this yet
+const room = 'game';
+
 // listen for connections. on a connection, connect to socket and join a room
 io.on('connection', (socket) => {
 	socket.join(room);
