@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Footer from './Footer';
 import FriendsList from './FriendsList';
 import Game from './Game';
 import './styles/Footer.css';
@@ -21,27 +20,20 @@ function Dashboard({ id }) {
 			{id}
 			<>{toggleGameTab ? <Game /> : <FriendsList />}</>
 			<footer>
-				{/* <Footer
-					toggleTab={toggleTab}
-					toggleGameTab={toggleGameTab}
-					setToggleGameTab={setToggleGameTab}
-				/> */}
-				<footer>
-					<button
-						type='button'
-						name='game tab'
-						className='game-tab'
-						onClick={() => toggleTab()}>
-						<h3>game</h3>
-					</button>
-					<button
-						type='button'
-						name='friends tab'
-						className='friends-tab'
-						onClick={() => toggleTab()}>
-						<h3>friends</h3>
-					</button>
-				</footer>
+				<button
+					type='button'
+					name='game tab'
+					className='game-tab'
+					onClick={() => toggleTab()}>
+					<h3>game</h3>
+				</button>
+				<button
+					type='button'
+					name='friends tab'
+					className='friends-tab'
+					onClick={() => toggleTab()}>
+					<h3>friends</h3>
+				</button>
 			</footer>
 		</div>
 	);
