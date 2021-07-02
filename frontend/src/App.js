@@ -2,12 +2,15 @@ import './fonts.css';
 import './App.css';
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
+import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header';
 import ClueInput from './components/Seer/ClueInput';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 function App() {
 	const [player, setPlayer] = useState('');
-
+	const [id, setId] = useLocalStorage('id');
 	const routes = [
 		{
 			path: '/',
@@ -33,7 +36,7 @@ function App() {
 				<Header />
 			</header>
 			<main>
-				<ClueInput />
+				<>{id ? <Dashboard id={id} /> : <Login onIdSubmit={setId} />}</>
 			</main>
 		</div>
 	);

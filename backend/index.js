@@ -17,17 +17,19 @@ const io = socketIO(server, {
 
 app.use(cors());
 
-const room = 'game';
 // listen for connections. on a connection, connect to socket and join a room
 io.on('connection', (socket) => {
 	socket.join(room);
+	console.log('client joined room');
 	// listen for new messages. when a new message is received, send the data and emit it into the room.
+
 	socket.on(NEW_MESSAGE_EVENT, (data) => {
 		io.in(room).emit(NEW_MESSAGE_EVENT, data);
 	});
 	// listen for disconnections. when a client disconnects, remove them from the room
 	socket.on('disconnect', () => {
 		socket.leave(room);
+		console.log('client left room');
 	});
 });
 
