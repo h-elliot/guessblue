@@ -1,0 +1,60 @@
+/* ======
+DASHBOARD
+====== */
+
+.dashboard {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ===
+FOOTER
+=== */
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.id-display {
+	width: 100%;
+	height: 25px;
+	margin: 0;
+	background-color: darkturquoise;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.id-display p {
+	font-size: small;
+}
+
+.footer-tabs {
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+
+button {
+	height: 100%;
+	width: 50%;
+	background-color: turquoise;
+	border: none;
+}
+button:hover {
+	background-color: darkcyan;
+}
+button:active {
+	background-color: teal;
+	border-top: 2px solid turquoise;
+}

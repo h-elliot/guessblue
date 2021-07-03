@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FriendsList from './FriendsList';
 import Game from './Game';
-import './styles/Footer.css';
+import './styles/Dashboard.css';
 
 function Dashboard({ id }) {
 	const [toggleGameTab, setToggleGameTab] = useState(true);
+
+	//! fix id copy-onClick
 
 	function toggleTab() {
 		console.log('toggleTab');
@@ -16,24 +18,36 @@ function Dashboard({ id }) {
 	}
 
 	return (
-		<div>
-			{id}
+		<div className='dashboard'>
 			<>{toggleGameTab ? <Game /> : <FriendsList />}</>
 			<footer>
-				<button
-					type='button'
-					name='game tab'
-					className='game-tab'
-					onClick={() => toggleTab()}>
-					<h3>game</h3>
-				</button>
-				<button
-					type='button'
-					name='friends tab'
-					className='friends-tab'
-					onClick={() => toggleTab()}>
-					<h3>friends</h3>
-				</button>
+				<div className='id-display'>
+					<p>
+						your id:
+						<span
+							onClick={() => {
+								navigator.clipboard.writeText(this.state.textToCopy);
+							}}>
+							{id}
+						</span>
+					</p>
+				</div>
+				<wrapper className='footer-tabs'>
+					<button
+						type='button'
+						name='game tab'
+						className='game-tab'
+						onClick={() => toggleTab()}>
+						<h3>game</h3>
+					</button>
+					<button
+						type='button'
+						name='friends tab'
+						className='friends-tab'
+						onClick={() => toggleTab()}>
+						<h3>friends</h3>
+					</button>
+				</wrapper>
 			</footer>
 		</div>
 	);

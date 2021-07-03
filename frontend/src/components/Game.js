@@ -1,9 +1,14 @@
+import React, { useState } from 'react';
+import Seeker from './Seeker/Seeker';
+import Hider from './Hider/Hider';
+
 function Game() {
+	const [seeker, setSeeker] = useState(false);
 	return (
 		<>
 			<div className='game'>
 				<h2>the game here</h2>
-				<input type='color'></input>
+				<>{seeker ? <Seeker /> : <Hider />}</>
 			</div>
 		</>
 	);
