@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import FriendsList from './FriendsList';
+import Invite from './Invite';
 import Game from './Game';
 import './styles/Dashboard.css';
+
+//? how do users start a game?
+//	- click 'new game' on game component is state of game is falsey
+
+//? how do users connect to friends?
+//	- copy and paste id into friends list
+
+//? how do users ?
 
 function Dashboard({ id }) {
 	const [toggleGameTab, setToggleGameTab] = useState(true);
@@ -19,7 +27,7 @@ function Dashboard({ id }) {
 
 	return (
 		<div className='dashboard'>
-			<>{toggleGameTab ? <Game /> : <FriendsList />}</>
+			<>{toggleGameTab ? <Game /> : <Invite />}</>
 			<footer>
 				<div className='id-display'>
 					<p>
@@ -42,10 +50,10 @@ function Dashboard({ id }) {
 					</button>
 					<button
 						type='button'
-						name='friends tab'
-						className='friends-tab'
+						name='invite tab'
+						className='invite-tab'
 						onClick={() => toggleTab()}>
-						<h3>friends</h3>
+						<h3>invite</h3>
 					</button>
 				</wrapper>
 			</footer>
