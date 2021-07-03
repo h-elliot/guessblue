@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react';
+import { useFriends } from '../contexts/FriendsProvider';
+import Friends from './Friends';
 import './styles/FriendsList.css';
 
 //? how do users connect to friends?
@@ -7,18 +9,19 @@ import './styles/FriendsList.css';
 //? how do users start a chat with a friend?
 //todo 	- click friend's name to invite to start a game and chat
 
+//! currently you can add any friend, even if they don't exist
+
 function FriendsList() {
 	const idRef = useRef();
 	const nameRef = useRef();
+	const { addFriend } = useFriends();
 
 	const [added, setAdded] = useState(false);
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		// addFriend(idRef.current.value, nameRef.current.value) {
-
-		// };
+		addFriend(idRef.current.value, nameRef.current.value);
 	}
 
 	return (
@@ -56,13 +59,7 @@ function FriendsList() {
 			</div>
 			<container className='friends-list'>
 				<ul className='added-friends'>
-					<li>kevin</li>
-					<li>holyhead mary</li>
-					<li>wonk</li>
-					<li>caramel kid</li>
-					<li>the child of the child</li>
-					<li>wednesday</li>
-					<li>marty mcfly</li>
+					<Friends />
 				</ul>
 			</container>
 		</div>
