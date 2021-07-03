@@ -3,10 +3,28 @@ DASHBOARD
 ====== */
 
 .dashboard {
+	position: fixed;
+	top: 12vh;
+	bottom: 80px;
+	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
+}
+
+.dash-main {
+	height: 90%;
+	width: 80%;
+	padding: 4%;
+	border-radius: 10px;
+	background-color: turquoise;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 /* ===
@@ -21,7 +39,7 @@ footer {
 	height: auto;
 	display: flex;
 	flex-flow: row wrap;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: space-around;
 }
 

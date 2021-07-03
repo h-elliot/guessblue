@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Invite from './Invite';
+import FriendsList from './FriendsList';
 import Game from './Game';
 import './styles/Dashboard.css';
 
@@ -27,7 +27,9 @@ function Dashboard({ id }) {
 
 	return (
 		<div className='dashboard'>
-			<>{toggleGameTab ? <Game /> : <Invite />}</>
+			<container className='dash-main'>
+				{toggleGameTab ? <Game /> : <FriendsList />}
+			</container>
 			<footer>
 				<div className='id-display'>
 					<p>
@@ -50,10 +52,10 @@ function Dashboard({ id }) {
 					</button>
 					<button
 						type='button'
-						name='invite tab'
-						className='invite-tab'
+						name='friends tab'
+						className='friends-tab'
 						onClick={() => toggleTab()}>
-						<h3>invite</h3>
+						<h3>friends</h3>
 					</button>
 				</wrapper>
 			</footer>
