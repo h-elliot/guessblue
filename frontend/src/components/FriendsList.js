@@ -20,7 +20,7 @@ function FriendsList() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		// useRef uses the 'current.value' to reflect its content (in the input field) at time of use
 		addFriend(idRef.current.value, nameRef.current.value);
 	}
 
@@ -54,7 +54,6 @@ function FriendsList() {
 					/>
 
 					<input type='submit' id='submit-new-friend' value='+' />
-					{added ? <p>added!</p> : null}
 				</form>
 			</div>
 			<container className='friends-list'>

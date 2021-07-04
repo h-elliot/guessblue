@@ -1,0 +1,23 @@
+.modal-overlay {
+	position: fixed;
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 56, 56, 0.568);
+}
+
+.start-game-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: peachpuff;
+	z-index: 1000;
+	padding: 2%;
+}
+
+.close-modal {
+	width: 20px;
+	height: 20px;
+	float: right;
+}

@@ -5,7 +5,7 @@ import {
 	Link,
 	NavLink,
 } from 'react-router-dom';
-import './styles/Nav.css';
+import '../styles/Nav.css';
 
 function Nav() {
 	return (

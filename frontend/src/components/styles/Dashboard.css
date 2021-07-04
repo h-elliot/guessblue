@@ -40,7 +40,7 @@ footer {
 	display: flex;
 	flex-flow: row wrap;
 	align-items: flex-end;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 
 .id-display {
@@ -61,11 +61,15 @@ footer {
 	width: 100%;
 	height: auto;
 	margin: 0;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 button {
 	height: 100%;
-	width: 50%;
+	width: 100%;
 	background-color: turquoise;
 	border: none;
 }
@@ -76,3 +80,15 @@ button:active {
 	background-color: teal;
 	border-top: 2px solid turquoise;
 }
+/* 
+#big-game-tab button {
+	flex-grow: 2;
+}
+
+#big-friends-tab button {
+	flex-grow: 2;
+} */
+
+/* #small-tab button {
+	width: 20%;
+} */

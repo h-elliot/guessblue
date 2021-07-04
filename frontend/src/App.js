@@ -2,7 +2,7 @@ import './fonts.css';
 import './App.css';
 import React, { useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
-import Header from './components/Header';
+import Header from './components/header comps/Header';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import { FriendsProvider } from './contexts/FriendsProvider';

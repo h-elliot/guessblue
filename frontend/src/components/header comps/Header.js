@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/Header.css';
+import '../styles/Header.css';
 import { Cross as Hamburger } from 'hamburger-react';
 import {
 	BrowserRouter as Router,
