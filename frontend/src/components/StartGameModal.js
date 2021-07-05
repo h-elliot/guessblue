@@ -32,13 +32,6 @@ function StartGameModal({ open, onClose }) {
 	// 	});
 	// }
 
-	function handleSubmit(e) {
-		e.preventDefault();
-
-		createNewGame(selectedFriendId);
-		onClose();
-	}
-
 	// == renders ==
 	if (!open) return null;
 
@@ -49,23 +42,6 @@ function StartGameModal({ open, onClose }) {
 				<button className='close-modal' onClick={onClose}>
 					X
 				</button>
-
-				<h4>start a new game</h4>
-				<form onSubmit={handleSubmit}>
-					<select type='text' id='choose-friend'>
-						{friends.map((friend) => (
-							<option
-								value={friend.id}
-								onChange={handleChange}
-								aria-label={friend.name}
-								ref={idRef}
-								key={friend.id}>
-								{friend.name}
-							</option>
-						))}
-					</select>
-					<button type='submit'>let's play!</button>
-				</form>
 			</div>
 		</>
 	);

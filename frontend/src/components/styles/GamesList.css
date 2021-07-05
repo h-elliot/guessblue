@@ -1,4 +1,4 @@
-.friends {
+.games {
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -6,42 +6,36 @@
 	justify-content: flex-start;
 }
 
-.invite-friend form {
+.start-game div {
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+.start-game form {
 	width: 100%;
 	height: 50px;
 	display: grid;
-	grid-template-columns: auto 5px auto 5px 40px;
+	grid-template-columns: auto 5px 40px;
 	grid-template-rows: min-content min-content;
 	gap: 2px;
 	place-items: center;
 }
 
-.invite-friend input[type='text'] {
+#new-game-label {
+	grid-column: 1;
+	grid-row: 1;
+	justify-self: left;
+}
+
+.start-game select {
 	width: 100%;
-}
-
-#id-label {
-	grid-column: 1;
-	grid-row: 1;
-}
-
-#name-label {
 	grid-column: 1;
 	grid-row: 2;
+	justify-self: left;
 }
 
-#new-friend-id {
+#start-game-button {
 	grid-column: 3;
-	grid-row: 1;
-}
-
-#new-friend-name {
-	grid-column: 3;
-	grid-row: 2;
-}
-
-#submit-new-friend {
-	grid-column: 5;
 	grid-row-start: 1;
 	grid-row-end: span 2;
 
@@ -52,15 +46,6 @@
 	border-radius: 35px;
 }
 
-.friends-list container {
-	height: 80%;
-	overflow: auto;
-}
-
-.friends-list li {
-	padding: 10px 5px;
-}
-
-.added-friends {
+#savior {
 	margin: 0;
 }

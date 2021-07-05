@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import FriendsList from './FriendsList';
-import Game from './Game';
-import StartGameModal from './StartGameModal';
+import GamesList from './GamesList';
 import './styles/Dashboard.css';
 import './styles/Modal.css';
 
@@ -17,31 +16,19 @@ function Dashboard({ id }) {
 	//! fix id copy-onClick
 
 	// == state ==
-	const [toggleGameTab, setToggleGameTab] = useState(true);
-	const [isOpen, setIsOpen] = useState(false);
+	const [toggleTab, setToggleTab] = useState(true);
 
 	// == refs ==
-	const nameRef = useRef();
 
 	// == functions ==
-
-	function toggleTab() {
-		console.log('toggleTab');
-		if (!toggleGameTab) {
-			setToggleGameTab(true);
-		} else {
-			setToggleGameTab(false);
-		}
-	}
 
 	// == renders ==
 
 	return (
 		<div className='dashboard'>
-			<container className='dash-main'>
-				{toggleGameTab ? <Game /> : <FriendsList />}
-			</container>
-			<StartGameModal open={isOpen} onClose={() => setIsOpen(false)} />
+			<div className='dash-main'>
+				{toggleTab ? <GamesList /> : <FriendsList />}
+			</div>
 			<footer>
 				<div className='id-display'>
 					<p>
@@ -57,29 +44,22 @@ function Dashboard({ id }) {
 						</span>
 					</p>
 				</div>
-				<wrapper className='footer-tabs'>
+				<div className='footer-tabs'>
 					<button
 						type='button'
 						name='game tab'
 						id='big-game-tab'
-						onClick={() => toggleTab()}>
-						<h3>play</h3>
+						onClick={() => setToggleTab(true)}>
+						<h3>games</h3>
 					</button>
 					<button
 						type='button'
 						name='friends tab'
 						id='big-friends-tab'
-						onClick={() => toggleTab()}>
+						onClick={() => setToggleTab(false)}>
 						<h3>friends</h3>
 					</button>
-					<button
-						type='button'
-						name='new game tab'
-						id='small-tab'
-						onClick={() => setIsOpen(true)}>
-						<h3>new</h3>
-					</button>
-				</wrapper>
+				</div>
 			</footer>
 		</div>
 	);

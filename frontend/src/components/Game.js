@@ -7,6 +7,18 @@ import Clues from './Clues';
 //todo: make text color legible against any bg color (mix-blend-mode css)
 //? https://css-tricks.com/almanac/properties/m/mix-blend-mode/
 
+// == notes ==
+
+// == context ==
+
+// == refs ==
+
+// == states ==
+
+// == functions ==
+
+// == renders ==
+
 function Game() {
 	const [seeker, setSeeker] = useState(false);
 

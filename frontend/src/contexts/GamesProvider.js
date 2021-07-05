@@ -12,27 +12,30 @@ export function GamesProvider({ children }) {
 	const [games, setGames] = useLocalStorage('games', []);
 	const { friends } = useFriends();
 
-	function createNewGame(recipient) {
+	function createGame(selectedFriendId) {
+		console.log('createGame selectedFriendId: ' + selectedFriendId);
+		const friendId = friends.selectedFriendId;
+		console.log('createGame friendId: ' + friendId);
 		setGames((prevGames) => {
-			return [...prevGames, { recipient, messages: [] }];
+			return [...prevGames, { selectedFriendId, messages: [] }];
 		});
 	}
 
 	const formattedGames = games.map((game) => {
-		const recipient = (recipient) => {
-			const friend = friends.find((friend) => {
-				return friend.id === recipient;
+		const selectedFriendId = () => {
+			const friendId = friends.find((friend) => {
+				return friend.id === selectedFriendId;
 			});
-			const name = (friend && friend.name) || recipient;
-			return { id: recipient, name };
+			const friendName = (friendId && friendId.name) || selectedFriendId;
+			return { id: selectedFriendId, friendName };
 		};
-		return { ...game, recipient };
+		return { ...game, selectedFriendId };
 	});
 
 	// storing value here to add legibility
 	const value = {
 		games: formattedGames,
-		createNewGame,
+		createGame,
 	};
 
 	return (

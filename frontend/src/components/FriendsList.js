@@ -16,8 +16,6 @@ function FriendsList() {
 	const nameRef = useRef();
 	const { addFriend } = useFriends();
 
-	const [added, setAdded] = useState(false);
-
 	function handleSubmit(e) {
 		e.preventDefault();
 		// useRef uses the 'current.value' to reflect its content (in the input field) at time of use
@@ -56,11 +54,11 @@ function FriendsList() {
 					<input type='submit' id='submit-new-friend' value='+' />
 				</form>
 			</div>
-			<container className='friends-list'>
+			<div className='friends-list'>
 				<ul className='added-friends'>
 					<Friends />
 				</ul>
-			</container>
+			</div>
 		</div>
 	);
 }
