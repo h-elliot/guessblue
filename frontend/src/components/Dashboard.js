@@ -12,12 +12,18 @@ import './styles/Modal.css';
 //	- copy and paste id into friends list
 
 function Dashboard({ id }) {
+	// == notes ==
+	//! fix modal infinite loop!
+	//! fix id copy-onClick
+
+	// == state ==
 	const [toggleGameTab, setToggleGameTab] = useState(true);
 	const [isOpen, setIsOpen] = useState(false);
+
+	// == refs ==
 	const nameRef = useRef();
 
-	//! fix id copy-onClick
-	//! fix modal infinite loop!
+	// == functions ==
 
 	function toggleTab() {
 		console.log('toggleTab');
@@ -28,22 +34,21 @@ function Dashboard({ id }) {
 		}
 	}
 
-	function openStartGameModal() {}
+	// == renders ==
 
 	return (
 		<div className='dashboard'>
 			<container className='dash-main'>
 				{toggleGameTab ? <Game /> : <FriendsList />}
 			</container>
-			<StartGameModal open={isOpen} onClose={() => setIsOpen(false)}>
-				<p>start a new game</p>
-			</StartGameModal>
+			<StartGameModal open={isOpen} onClose={() => setIsOpen(false)} />
 			<footer>
 				<div className='id-display'>
 					<p>
 						your id:
 						<span
 							className='id-span'
+							//! fix id copy-onClick
 							// onClick={() => {
 							// 	navigator.clipboard.writeText(this.state.textToCopy);
 							// }}
