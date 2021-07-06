@@ -12,10 +12,11 @@ function GamesList() {
 	const { createGame } = useGames();
 
 	// == refs ==
-	const idRef = useRef();
+	// const idRef = useRef();
 
 	// == states ==
 	const [selectedFriendId, setSelectedFriendId] = useState('');
+	let gamePartner = selectedFriendId;
 
 	// == functions ==
 
@@ -25,6 +26,8 @@ function GamesList() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+
+		console.log(createGame);
 
 		createGame(selectedFriendId);
 	}
@@ -46,10 +49,7 @@ function GamesList() {
 							pick your favorite friend
 						</option>
 						{friends.map((friend) => (
-							<option
-								value={friend.id}
-								aria-label={friend.name}
-								key={friend.id}>
+							<option value={friend.id} label={friend.name} key={friend.id}>
 								{friend.name}
 							</option>
 						))}
@@ -57,7 +57,12 @@ function GamesList() {
 					<input type='submit' id='start-game-button' value='🎨' />
 				</form>
 			</div>
-			<h5 id='savior'>selectedFriendId: {selectedFriendId}</h5>
+			<h5 id='savior'>
+				selectedFriendId: {selectedFriendId}
+				<br />
+				gamePartner: {gamePartner}
+			</h5>
+
 			<div className='games-list'>
 				<ul className='created-games'>
 					<Games />

@@ -9,33 +9,39 @@ export function useGames() {
 }
 
 export function GamesProvider({ children }) {
+	// 'games' is the key for the games context, the value is an array of objects containing the gamePartner:id  and messages= []
 	const [games, setGames] = useLocalStorage('games', []);
 	const { friends } = useFriends();
 
-	function createGame(selectedFriendId) {
-		console.log('createGame selectedFriendId: ' + selectedFriendId);
-		const friendId = friends.selectedFriendId;
-		console.log('createGame friendId: ' + friendId);
+	function createGame(gamePartner) {
 		setGames((prevGames) => {
-			return [...prevGames, { selectedFriendId, messages: [] }];
+			return [...prevGames, { gamePartner, messages: [] }];
 		});
 	}
 
+	//! untested
+	// function deleteGame(id) {
+	// 	const index = games.indexOf(id.value);
+	// 	if (index) {
+	// 		games.splice(index, 1);
+	// 	}
+	// }
+
 	const formattedGames = games.map((game) => {
-		const selectedFriendId = () => {
-			const friendId = friends.find((friend) => {
-				return friend.id === selectedFriendId;
-			});
-			const friendName = (friendId && friendId.name) || selectedFriendId;
-			return { id: selectedFriendId, friendName };
-		};
-		return { ...game, selectedFriendId };
+		// const gamePartner = game.gamePartner.map((gamePartner) => {
+		// 	const friend = friends.find((friend) => {
+		// 		return friend.id === gamePartner;
+		// 	});
+		// 	const name = (friend && friend.name) || gamePartner;
+		// 	return { id: gamePartner, name };
+		// });
+		// return { ...game, gamePartner };
 	});
 
 	// storing value here to add legibility
 	const value = {
-		games: formattedGames,
-		createGame,
+		games: createGame,
+		formattedGames,
 	};
 
 	return (

@@ -7,9 +7,13 @@ function Games() {
 	return (
 		<>
 			<ul>
-				{games.map((game, index) => (
-					<li key={index}>{game.selectedFriendId.name}</li>
-				))}
+				{/* {games
+					? games.map((game, index) => (
+							<li key={index}>
+								{game.selectedFriendId.name} <span>🗑️</span>
+							</li>
+					  ))
+					: null} */}
 			</ul>
 		</>
 	);

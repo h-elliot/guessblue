@@ -49,3 +49,8 @@
 #savior {
 	margin: 0;
 }
+
+.created-games {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}

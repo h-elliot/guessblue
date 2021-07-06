@@ -52,7 +52,7 @@
 	border-radius: 35px;
 }
 
-.friends-list container {
+.friends-list {
 	height: 80%;
 	overflow: auto;
 }
