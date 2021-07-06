@@ -1,0 +1,23 @@
+// guessblue-games
+
+[{"gamePartner":"12","messages":[]},{"gamePartner":"11","messages":[]},{"gamePartner":"13","messages":[]}]
+
+//===
+
+Map(3) { 0 → {…}, 1 → {…}, 2 → {…} }
+​
+size: 3
+​
+<entries>
+​​
+0: 0 → Object { gamePartner: "12", messages: [] }
+​​​
+<key>: "0"
+​​​
+<value>: Object { gamePartner: "12", messages: [] }
+​​
+1: 1 → Object { gamePartner: "11", messages: [] }
+​​
+2: 2 → Object { gamePartner: "13", messages: [] }
+​
+<prototype>: Map.prototype { … }

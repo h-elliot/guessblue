@@ -6,6 +6,8 @@ import './styles/GamesList.css';
 
 function GamesList() {
 	// == notes ==
+	// == states ==
+	const [gamePartnerId, setGamePartner] = useState('');
 
 	// == context ==
 	const { friends } = useFriends();
@@ -14,14 +16,10 @@ function GamesList() {
 	// == refs ==
 	// const idRef = useRef();
 
-	// == states ==
-	const [selectedFriendId, setSelectedFriendId] = useState('');
-	let gamePartner = selectedFriendId;
-
 	// == functions ==
 
 	function handleSelect(e) {
-		setSelectedFriendId(e.target.value);
+		setGamePartner(e.target.value);
 	}
 
 	function handleSubmit(e) {
@@ -29,7 +27,7 @@ function GamesList() {
 
 		console.log(createGame);
 
-		createGame(selectedFriendId);
+		createGame(gamePartnerId);
 	}
 
 	// == renders ==
@@ -57,12 +55,7 @@ function GamesList() {
 					<input type='submit' id='start-game-button' value='🎨' />
 				</form>
 			</div>
-			<h5 id='savior'>
-				selectedFriendId: {selectedFriendId}
-				<br />
-				gamePartner: {gamePartner}
-			</h5>
-
+			<h5 id='savior'>gamePartnerId: {gamePartnerId}</h5>
 			<div className='games-list'>
 				<ul className='created-games'>
 					<Games />
