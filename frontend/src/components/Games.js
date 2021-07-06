@@ -14,10 +14,8 @@ function Games() {
 		<>
 			<ul>
 				{games.map((game, index) => {
-					return <li key={`${game.gamePartner}`}>{game.gamePartner}</li>;
+					return <li key={game.gamePartner}>{game.gamePartner} 🗑️</li>;
 				})}
-
-				<button className='delete-this'>🗑️</button>
 			</ul>
 		</>
 	);

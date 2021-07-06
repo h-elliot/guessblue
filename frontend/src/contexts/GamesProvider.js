@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useFriends } from './FriendsProvider';
 
@@ -20,15 +20,24 @@ export function GamesProvider({ children }) {
 		});
 	}
 
-	// create more readable games
+	//* -----------------------
+	//? game.gamePartner.map --
+	//! TypeError: game.gamePartner.map is not a function
+	//* -- -- -- -- -- -- -- --
+	//? games.gamePartner.map -
+	//! TypeError: games.gamePartner is undefined
+	//* -----------------------
 
-	const formattedGames = gamesMap.prototype.get();
-
-	const value = {
-		games: games,
-		createGame,
-		formattedGames,
-	};
+	// const formattedGames = games.map((game) => {
+	// 	const gamePartner = game.gamePartner.forEach((gamePartner) => {
+	// 		const friend = friends.find((friend) => {
+	// 			return friend.id === gamePartner;
+	// 		});
+	// 		const name = (friend && friend.name) || gamePartner;
+	// 		return { id: gamePartner, name };
+	// 	});
+	// 	return { ...game, gamePartner };
+	// });
 
 	return (
 		<GamesContext.Provider value={{ createGame, games }}>

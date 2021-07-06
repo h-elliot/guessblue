@@ -1,23 +1,73 @@
-// guessblue-games
+[
+  {
+    "name": "Games",
+    "subHooks": [
+      {
+        "name": "Context",
+        "value": {
+          "createGame": "ƒ createGame() {}",
+          "games": [
+            {
+              "gamePartner": "12",
+              "messages": "[]"
+            },
+            {
+              "gamePartner": "11",
+              "messages": "[]"
+            },
+            {
+              "gamePartner": "13",
+              "messages": "[]"
+            }
+          ]
+        },
+        "subHooks": []
+      }
+    ]
+  },
+  {
+    "name": "Friends",
+    "subHooks": [
+      {
+        "name": "Context",
+        "value": {
+          "friends": "[{…}, {…}, {…}, {…}]",
+          "addFriend": "ƒ addFriend() {}"
+        },
+        "subHooks": []
+      }
+    ]
+  }
+]
 
-[{"gamePartner":"12","messages":[]},{"gamePartner":"11","messages":[]},{"gamePartner":"13","messages":[]}]
+=====
 
-//===
+	const formattedGames = games.map((game) => {
+		const gamePartner = game.gamePartner.map((gamePartner) => {
+			const friend = friends.find((friend) => {
+				return friend.id === gamePartner;
+			});
+			const name = (friend && friend.name) || gamePartner;
+			return { id: gamePartner, name };
+		});
+		return { ...game, gamePartner };
+	});
 
-Map(3) { 0 → {…}, 1 → {…}, 2 → {…} }
-​
-size: 3
-​
-<entries>
-​​
-0: 0 → Object { gamePartner: "12", messages: [] }
-​​​
-<key>: "0"
-​​​
-<value>: Object { gamePartner: "12", messages: [] }
-​​
-1: 1 → Object { gamePartner: "11", messages: [] }
-​​
-2: 2 → Object { gamePartner: "13", messages: [] }
-​
-<prototype>: Map.prototype { … }
+=====
+
+	//todo create more readable games (we want friend!! names!!)
+
+	//? to format our games, = map thru games(for each (game) =>
+	//* const formattedGames = games.map((game) => {
+	//? we want partner to = all gamePtrs(for each (gamePtr) =>
+	//**  const gamePartner = game.gamePartner.map((gamePartner) => {
+	//? convert gamePtr [an id] to obj with id && name
+	//? define friend as = the friend in 'friends (find friend) =>
+	//*** const friend = friends.find(friend => {
+	//? friend is = friend with the same id as gamePtr, in 'friends'
+	//**** return friend.id === gamePartner
+	//? return a new obj {that has id and name (either friend.name or gamePartner as default) }
+	//***** const name = (friend && friend.name) || gamePartner
+	//****** return { id: gamePartner, name }
+	//? final return: {new obj with everything abt game, new formatted version of gamePartner}
+	//******* return { ...game, gamePartner }
