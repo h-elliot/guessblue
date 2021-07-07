@@ -6,29 +6,40 @@ import './styles/GamesList.css';
 
 function GamesList() {
 	// == notes ==
+	// this.handleSelect = this.handleSelect.bind(this);
 	// == states ==
-	const [gamePartnerId, setGamePartner] = useState('');
+	const [gamePartnerId, setGamePartnerId] = useState('');
+	const [gamePartnerName, setGamePartnerName] = useState('');
 
 	// == context ==
 	const { friends } = useFriends();
 	const { createGame } = useGames();
 
 	// == refs ==
-	// const idRef = useRef();
 
 	// == functions ==
 
-	function handleSelect(e) {
-		setGamePartner(e.target.value);
-	}
+	const handleSelect = (e) => {
+		setGamePartnerId(e.target.value);
+		setGamePartnerName(e.target.name);
+		console.clear();
+		console.log(gamePartnerId, gamePartnerName);
+	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		console.log(createGame);
+		console.log(`submit e.target`);
+		console.log(e.target);
+		console.log(`gamePartnerId:`);
+		console.log(gamePartnerId);
+		console.log(`gamePartnerName:`);
+		console.log(gamePartnerName);
 
-		createGame(gamePartnerId);
+		// createGame(gamePartnerId);
 	}
+
+	// function consoleThatShit() {}
 
 	// == renders ==
 
@@ -37,17 +48,19 @@ function GamesList() {
 			<div className='start-game'>
 				<form onSubmit={handleSubmit}>
 					<label for='choose-friend' id='new-game-label'>
-						start a new game with your bud{' '}
+						start a game with a click ➔
 					</label>
-					<select
-						name='choose-friend'
-						id='choose-friend'
-						onChange={handleSelect}>
-						<option selected value='pick a friend'>
-							pick your favorite friend
+					<select onChange={handleSelect}>
+						<option selected value='pick a friend' name='default' id='default'>
+							pick a friend
 						</option>
 						{friends.map((friend) => (
-							<option value={friend.id} label={friend.name} key={friend.id}>
+							<option
+								value={friend.id}
+								name={friend.name}
+								id={friend.id}
+								label={friend.name}
+								key={friend.id}>
 								{friend.name}
 							</option>
 						))}
@@ -55,7 +68,9 @@ function GamesList() {
 					<input type='submit' id='start-game-button' value='🎨' />
 				</form>
 			</div>
-			<h5 id='savior'>gamePartnerId: {gamePartnerId}</h5>
+			<h5 id='savior'>
+				gamePartnerId: {gamePartnerId} | gamePartnerName: {gamePartnerName}
+			</h5>
 			<div className='games-list'>
 				<ul className='created-games'>
 					<Games />
