@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Clues() {
-	const [hider, setHider] = useState(true);
+	// const [hider, setHider] = useState(true);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -11,9 +11,9 @@ function Clues() {
 			<div className='clues'>
 				<container className='clue-display'></container>
 				<form className='clue-input' onSubmit={handleSubmit}>
-					<label for='send-message' id='send-message-label'>
+					{/* <label for='send-message' id='send-message-label'>
 						{hider ? <small>clue: </small> : <small>reply: </small>}
-					</label>
+					</label> */}
 					<input
 						type='text'
 						name='send-message'

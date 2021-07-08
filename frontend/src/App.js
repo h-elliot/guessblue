@@ -1,6 +1,6 @@
 import './fonts.css';
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/header comps/Header';
 import Login from './components/Login';
@@ -9,7 +9,9 @@ import { FriendsProvider } from './contexts/FriendsProvider';
 import { GamesProvider } from './contexts/GamesProvider';
 
 function App() {
-	const [player, setPlayer] = useState('');
+	console.clear();
+
+	// const [player, setPlayer] = useState('');
 	const [id, setId] = useLocalStorage('id');
 
 	// everything in our dashboard has the friends/games context now bc we're providing it here

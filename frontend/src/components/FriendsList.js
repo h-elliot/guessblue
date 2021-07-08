@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useFriends } from '../contexts/FriendsProvider';
 import Friends from './Friends';
 import './styles/FriendsList.css';
@@ -26,7 +26,7 @@ function FriendsList() {
 		<div className='friends'>
 			<div className='invite-friend'>
 				<form onSubmit={handleSubmit}>
-					<label for='new-friend-id' id='id-label'>
+					<label htmlFor='new-friend-id' id='id-label'>
 						friend's id:
 					</label>
 					<input
@@ -39,7 +39,7 @@ function FriendsList() {
 					/>
 
 					<br />
-					<label for='new-friend-name' id='name-label'>
+					<label htmlFor='new-friend-name' id='name-label'>
 						nickname:
 					</label>
 					<input

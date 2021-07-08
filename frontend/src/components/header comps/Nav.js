@@ -1,10 +1,7 @@
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	NavLink,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+// Switch,
+// 	Route,
+// 	NavLink,
 import '../styles/Nav.css';
 
 function Nav() {

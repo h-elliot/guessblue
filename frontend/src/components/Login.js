@@ -38,7 +38,7 @@ function Login({ onIdSubmit }) {
 					ref={idRef}
 					required></input>
 				<br />
-				<input type='submit' value='login'></input>{' '}
+				{/* <input type='submit' value='login'></input>{' '} */}
 				<input onClick={createNewId} type='button' value='new ID' />
 			</form>
 		</div>

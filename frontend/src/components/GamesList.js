@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Games from './Games';
 import { useFriends } from '../contexts/FriendsProvider';
 import { useGames } from '../contexts/GamesProvider';
@@ -8,8 +8,7 @@ function GamesList() {
 	// == notes ==
 	// this.handleSelect = this.handleSelect.bind(this);
 	// == states ==
-	const [gamePartnerId, setGamePartnerId] = useState('');
-	const [gamePartnerName, setGamePartnerName] = useState('');
+	const [gamePartnerIds, setGamePartnerIds] = useState([]);
 
 	// == context ==
 	const { friends } = useFriends();
@@ -19,27 +18,26 @@ function GamesList() {
 
 	// == functions ==
 
-	const handleSelect = (e) => {
-		setGamePartnerId(e.target.value);
-		setGamePartnerName(e.target.name);
+	const handleChange = (e) => {
 		console.clear();
-		console.log(gamePartnerId, gamePartnerName);
+		console.log(`e.target.value: ${e.target.value}`);
+		console.log(`friends string: ${JSON.stringify(friends)}`);
+		const friendName = friends.filter(function (friend) {
+			return friend.name == e.target.value;
+		});
+		console.log(`friendName: ${JSON.stringify(friendName)}`);
+		setGamePartnerIds(e.target.value);
+
+		console.log('gamePartnerIds: ' + gamePartnerIds);
 	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		console.log(`submit e.target`);
-		console.log(e.target);
-		console.log(`gamePartnerId:`);
-		console.log(gamePartnerId);
-		console.log(`gamePartnerName:`);
-		console.log(gamePartnerName);
-
-		// createGame(gamePartnerId);
+		createGame(gamePartnerIds);
 	}
 
-	// function consoleThatShit() {}
+	// const friendsMap = friends.map((friend) => (id: friend.id, name: friend.name));
 
 	// == renders ==
 
@@ -47,20 +45,20 @@ function GamesList() {
 		<div className='games'>
 			<div className='start-game'>
 				<form onSubmit={handleSubmit}>
-					<label for='choose-friend' id='new-game-label'>
+					<label htmlFor='choose-friend' id='new-game-label'>
 						start a game with a click ➔
 					</label>
-					<select onChange={handleSelect}>
-						<option selected value='pick a friend' name='default' id='default'>
+					<select onChange={handleChange}>
+						<option defaultValue='pick a friend' name='default' id='default'>
 							pick a friend
 						</option>
 						{friends.map((friend) => (
 							<option
+								key={friend.name}
 								value={friend.id}
-								name={friend.name}
-								id={friend.id}
 								label={friend.name}
-								key={friend.id}>
+								name={friend.name}
+								id={friend.id}>
 								{friend.name}
 							</option>
 						))}
@@ -68,9 +66,6 @@ function GamesList() {
 					<input type='submit' id='start-game-button' value='🎨' />
 				</form>
 			</div>
-			<h5 id='savior'>
-				gamePartnerId: {gamePartnerId} | gamePartnerName: {gamePartnerName}
-			</h5>
 			<div className='games-list'>
 				<ul className='created-games'>
 					<Games />

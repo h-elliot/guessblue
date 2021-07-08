@@ -1,19 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { useFriends } from '../contexts/FriendsProvider';
+import React, { useRef } from 'react';
 import './styles/Modal.css';
-import { useGames } from '../contexts/GamesProvider';
+// import { useFriends } from '../contexts/FriendsProvider';
+// import { useGames } from '../contexts/GamesProvider';
 
 function StartGameModal({ open, onClose }) {
 	// == context ==
-	const { friends } = useFriends();
-	const { createNewGame } = useGames();
+	// const { friends } = useFriends();
+	// const { createNewGame } = useGames();
 
 	// == refs ==
 	const nameRef = useRef();
 	const idRef = useRef();
 
 	// == states ==
-	const [selectedFriendId, setSelectedFriendId] = useState('');
+	// const [selectedFriendId, setSelectedFriendId] = useState('');
 
 	// == functions ==
 

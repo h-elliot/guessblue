@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/Header.css';
 import { Cross as Hamburger } from 'hamburger-react';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	NavLink,
-} from 'react-router-dom';
+// import {
+// 	BrowserRouter as Router,
+// 	Switch,
+// 	Route,
+// 	Link,
+// 	NavLink,
+// } from 'react-router-dom';
 import Nav from './Nav';
 
 function Header() {

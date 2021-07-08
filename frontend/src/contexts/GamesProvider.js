@@ -21,74 +21,20 @@ export function GamesProvider({ children }) {
 		});
 	}
 
-	// console.log('init formattedGames');
-	// const formattedGames1 = games.map((game) => {
-	// 	console.log('init forEach(friend)');
-	// 	friends.forEach((friend) => {
-	// 		console.log(`gamePartner: ` + game.gamePartner);
-	// 		console.log('init if (friend.id)');
-	// 		if (friend.id === game.gamePartner) {
-	// 			console.log('we made it to the top!');
-	// 			const partnerId = game.gamePartner;
-	// 			console.log(`partnerId: ` + partnerId);
-	// 			const partnerName = friend.name;
-	// 			console.log(`partnerName: ` + partnerName);
-	// 			const messages = games.messages;
-	// 			console.log(`messages: ` + messages);
-	// 			return {
-	// 				partnerId: game.gamePartner,
-	// 				partnerName: friend.name,
-	// 				messages: game.messages,
-	// 			};
-	// 		}
-	// 	});
-	// });
+	for (let i = 0; i < games.length; i++) {
+		for (let j = 0; j < friends.length; j++) {
+			if (games[i].partner == friends[j].id) {
+				const partnerName = friends[j].name;
+				games[i].name = partnerName;
+			}
+		}
+	}
 
-	const formattedGames2 = games.map((game) => {
-		const gamePartner = (partner) => {
-			const friend = friends.find((friend) => {
-				console.log(friend.id === partner);
-				return friend.id === partner;
-			});
-			const name = (friend && friend.name) || gamePartner;
-			return { id: gamePartner, name };
-		};
-		return { ...game, gamePartner };
-	});
-
-	const formattedGames3 = games.map((singleGame) => {
-		// for each single game,
-		// find the friend.id that === partner
-		// find the friend's name
-		// save that name to gamePartner as a new property
-	});
-
-	console.log(`formattedGames: ${formattedGames}`);
-
-	// [object Object],[object Object],[object Object]
-
-	const arrayOfKeyValues = {};
-
-	// function consoleCheck() {
-	// 	console.log(`formattedGames:`);
-	// 	console.log(formattedGames);
-	// 	console.log(`games.gamePartner:`);
-	// 	console.log(games.gamesPartner);
-	// }
-
-	// const formattedGames = games.map((game) => {
-	// 	const gamePartner = game.gamePartner.forEach((gamePartner) => {
-	// 		const friend = friends.find((friend) => {
-	// 			return friend.id === gamePartner;
-	// 		});
-	// 		const name = (friend && friend.name) || gamePartner;
-	// 		return { id: gamePartner, name };
-	// 	});
-	// 	return { ...game, gamePartner };
-	// });
+	console.log(`GAMES:`);
+	console.log(games);
 
 	return (
-		<GamesContext.Provider value={{ createGame, games, formattedGames }}>
+		<GamesContext.Provider value={{ createGame, games }}>
 			{children}
 		</GamesContext.Provider>
 	);

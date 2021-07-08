@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import Seeker from './Seeker/Seeker';
-import Hider from './Hider/Hider';
+// import React, { useState } from 'react';
 import Clues from './Clues';
 
 //todo: make background color = randomly assigned game color
@@ -20,7 +18,7 @@ import Clues from './Clues';
 // == renders ==
 
 function Game() {
-	const [seeker, setSeeker] = useState(false);
+	// const [seeker, setSeeker] = useState(false);
 
 	return (
 		<>
@@ -29,7 +27,7 @@ function Game() {
 			</section>
 			<div className='game'>
 				<h2>the game here</h2>
-				<>{seeker ? <Seeker /> : <Hider />}</>
+				{/* <>{seeker ? <Seeker /> : <Hider />}</> */}
 			</div>
 		</>
 	);

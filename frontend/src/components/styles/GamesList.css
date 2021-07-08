@@ -24,7 +24,8 @@
 #new-game-label {
 	grid-column: 1;
 	grid-row: 1;
-	justify-self: left;
+	justify-self: right;
+	padding-right: 5px;
 }
 
 .start-game select {
@@ -46,11 +47,19 @@
 	border-radius: 35px;
 }
 
-#savior {
-	margin: 0;
-}
-
-.created-games {
+.created-games ul {
 	overflow-x: hidden;
 	overflow-y: scroll;
+
+	display: grid;
+	grid-template-columns: auto min-content;
+}
+
+.created-games li {
+	padding: 3%;
+	width: auto;
+}
+
+.created-games button {
+	width: 20%;
 }
