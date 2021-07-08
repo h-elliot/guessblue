@@ -7,7 +7,7 @@ function Games() {
 	return (
 		<>
 			<ul>
-				{games.map((game) => {
+				{/* {games.map((game) => {
 					return (
 						<>
 							<li key={game.partner} onClick={() => selectGameIndex(index)}>
@@ -16,7 +16,7 @@ function Games() {
 							<button>🗑️</button>
 						</>
 					);
-				})}
+				})} */}
 			</ul>
 		</>
 	);

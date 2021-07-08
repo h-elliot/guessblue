@@ -26,6 +26,7 @@ export function GamesProvider({ children }) {
 			if (games[i].partner == friends[j].id) {
 				const partnerName = friends[j].name;
 				games[i].name = partnerName;
+				games[i].index = [i];
 			}
 		}
 	}
@@ -34,7 +35,7 @@ export function GamesProvider({ children }) {
 	console.log(games);
 
 	return (
-		<GamesContext.Provider value={{ createGame, games }}>
+		<GamesContext.Provider value={{ createGame, games, setSelectedGameIndex }}>
 			{children}
 		</GamesContext.Provider>
 	);
