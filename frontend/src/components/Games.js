@@ -2,7 +2,7 @@ import React from 'react';
 import { useGames } from '../contexts/GamesProvider';
 
 function Games() {
-	const { games } = useGames();
+	const { games, selectGameIndex } = useGames();
 
 	return (
 		<>
@@ -10,7 +10,9 @@ function Games() {
 				{games.map((game) => {
 					return (
 						<>
-							<li key={game.partner}>{game.name}</li>
+							<li key={game.partner} onClick={() => selectGameIndex(index)}>
+								{game.name}
+							</li>
 							<button>🗑️</button>
 						</>
 					);

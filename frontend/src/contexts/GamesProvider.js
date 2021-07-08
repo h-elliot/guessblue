@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useFriends } from './FriendsProvider';
 
@@ -10,7 +10,7 @@ export function useGames() {
 
 export function GamesProvider({ children }) {
 	const [games, setGames] = useLocalStorage('games', []);
-	// key: 'games', value: [];
+	const [selectedGameIndex, setSelectedGameIndex] = useState(0);
 	const { friends } = useFriends();
 
 	function createGame(partner) {

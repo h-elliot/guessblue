@@ -6,9 +6,9 @@ import './styles/GamesList.css';
 
 function GamesList() {
 	// == notes ==
-	// this.handleSelect = this.handleSelect.bind(this);
+
 	// == states ==
-	const [gamePartnerIds, setGamePartnerIds] = useState([]);
+	const [gamePartnerId, setGamePartnerId] = useState([]);
 
 	// == context ==
 	const { friends } = useFriends();
@@ -26,15 +26,15 @@ function GamesList() {
 			return friend.name == e.target.value;
 		});
 		console.log(`friendName: ${JSON.stringify(friendName)}`);
-		setGamePartnerIds(e.target.value);
+		setGamePartnerId(e.target.value);
 
-		console.log('gamePartnerIds: ' + gamePartnerIds);
+		console.log('gamePartnerId: ' + gamePartnerId);
 	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		createGame(gamePartnerIds);
+		createGame(gamePartnerId);
 	}
 
 	// const friendsMap = friends.map((friend) => (id: friend.id, name: friend.name));
