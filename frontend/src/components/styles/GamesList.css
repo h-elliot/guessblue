@@ -58,6 +58,11 @@
 .created-games li {
 	padding: 3%;
 	width: auto;
+	cursor: pointer;
+}
+
+.created-games li:active {
+	color: tomato;
 }
 
 .created-games button {

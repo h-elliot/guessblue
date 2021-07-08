@@ -31,12 +31,25 @@ export function GamesProvider({ children }) {
 		}
 	}
 
+	const formattedGames = games.map((game, index) => {
+		const selected = index === selectedGameIndex;
+		return { ...game, selected };
+	});
+
 	console.log(`GAMES:`);
 	console.log(games);
 
+	console.log(`formattedGAMES:`);
+	console.log(formattedGames);
+
+	const value = {
+		games: formattedGames,
+		selectedGame: formattedGames[selectedGameIndex],
+		selectGameIndex: setSelectedGameIndex,
+		createGame,
+	};
+
 	return (
-		<GamesContext.Provider value={{ createGame, games, setSelectedGameIndex }}>
-			{children}
-		</GamesContext.Provider>
+		<GamesContext.Provider value={value}>{children}</GamesContext.Provider>
 	);
 }
