@@ -23,7 +23,7 @@ export function GamesProvider({ children }) {
 
 	for (let i = 0; i < games.length; i++) {
 		for (let j = 0; j < friends.length; j++) {
-			if (games[i].partner == friends[j].id) {
+			if (games[i].partner === friends[j].id) {
 				const partnerName = friends[j].name;
 				games[i].name = partnerName;
 				games[i].index = [i];

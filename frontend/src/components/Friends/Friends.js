@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFriends } from '../contexts/FriendsProvider';
+import { useFriends } from '../../contexts/FriendsProvider';
 
 function Friends() {
 	const { friends } = useFriends();

@@ -1,33 +1,30 @@
 import React, { useState } from 'react';
-import FriendsList from './FriendsList';
-import GamesList from './GamesList';
+import FriendsList from './Friends/FriendsList';
+import GamesList from './Games/GamesList';
+import OpenGame from './Games/OpenGame';
+import { useGames } from '../contexts/GamesProvider';
 import './styles/Dashboard.css';
 import './styles/Modal.css';
 
-//? how do users start a game?
-//	- click 'new game' in footer if state of game is falsey
-
-//? how do users connect to friends?
-//	- copy and paste id into friends list
-
 function Dashboard({ id }) {
 	// == notes ==
-	//! fix modal infinite loop!
 	//! fix id copy-onClick
 
-	// == state ==
+	// == states | refs | contexts ==
+	const { selectedGame } = useGames();
 	const [toggleTab, setToggleTab] = useState(true);
-
-	// == refs ==
-
-	// == functions ==
+	const [openGame, setOpenGame] = useState(false);
+	// == functions | variables ==
 
 	// == renders ==
 
 	return (
 		<div className='dashboard'>
+			{openGame ? (
+				<OpenGame openGame={openGame} setOpenGame={setOpenGame} />
+			) : null}
 			<div className='dash-main'>
-				{toggleTab ? <GamesList /> : <FriendsList />}
+				{toggleTab ? <GamesList setOpenGame={setOpenGame} /> : <FriendsList />}
 			</div>
 			<footer>
 				<div className='id-display'>
@@ -35,7 +32,6 @@ function Dashboard({ id }) {
 						your id:
 						<span
 							className='id-span'
-							//! fix id copy-onClick
 							// onClick={() => {
 							// 	navigator.clipboard.writeText(this.state.textToCopy);
 							// }}

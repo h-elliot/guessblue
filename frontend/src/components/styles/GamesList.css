@@ -49,16 +49,26 @@
 
 .created-games ul {
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
+}
 
+.created-games div {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	cursor: pointer;
 	display: grid;
 	grid-template-columns: auto min-content;
 }
 
+.selected-game div {
+	background-color: peachpuff;
+	border-radius: 25px;
+}
+
 .created-games li {
 	padding: 3%;
-	width: auto;
-	cursor: pointer;
+	width: 70%;
 }
 
 .created-games li:active {
@@ -67,4 +77,8 @@
 
 .created-games button {
 	width: 20%;
+}
+
+.created-games button:hover {
+	background-color: inherit;
 }

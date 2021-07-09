@@ -57,6 +57,11 @@
 	overflow: auto;
 }
 
+.friends-list ul {
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
 .friends-list li {
 	padding: 10px 5px;
 }

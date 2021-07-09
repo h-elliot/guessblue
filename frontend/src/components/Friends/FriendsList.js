@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { useFriends } from '../contexts/FriendsProvider';
+import { useFriends } from '../../contexts/FriendsProvider';
 import Friends from './Friends';
-import './styles/FriendsList.css';
+import '../styles/FriendsList.css';
 
 //? how do users connect to friends?
 //todo	- copy and paste id into friends list

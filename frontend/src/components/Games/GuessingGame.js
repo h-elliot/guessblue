@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import Clues from './Clues';
+import Clues from '../Clues';
 
 //todo: make background color = randomly assigned game color
 //todo: make text color legible against any bg color (mix-blend-mode css)
