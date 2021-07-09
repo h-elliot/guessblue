@@ -1,30 +1,32 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useGames } from '../../../contexts/GamesProvider';
 
 function ChatHistory() {
 	// == notes ==
 
-	// == states | refs | contexts ==
+	// == hooks ==
 	const { selectedGame } = useGames();
-	const lastMessageRef = useRef();
+	const setRef = useCallback((node) => {
+		if (node) {
+			node.scrollIntoView({ smooth: true });
+		}
+	}, []);
 
 	// == functions | variables ==
-
-	useEffect(() => {
-		if (lastMessageRef.current) {
-			lastMessageRef.current.scrollIntoView({ smooth: true });
-		}
-	}, [lastMessageRef.current]);
 
 	return (
 		<>
 			<div className='messages'>
 				{selectedGame.messages.map((message, index) => {
+					const lastMessage = selectedGame.messages.length - 1 === index;
 					return (
-						<div key={index} className='single-message-container'>
+						<div
+							ref={lastMessage ? setRef : null}
+							key={index}
+							className='single-message-container'>
 							<div className='single-message-text'>{message.text}</div>
 							<div className='single-message-name'>
-								{message.fromMe ? 'You' : message.senderName}
+								{message.fromMe ? 'you' : message.senderName}
 							</div>
 						</div>
 					);

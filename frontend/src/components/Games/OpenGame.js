@@ -7,7 +7,7 @@ import '../styles/Modal.css';
 function OpenGame({ openGame, setOpenGame }) {
 	// == notes ==
 
-	// == states | refs | contexts ==
+	// == hooks ==
 	const [text, setText] = useState('');
 	const { games, formattedGames, selectedGame, sendMessage } = useGames();
 
@@ -34,30 +34,32 @@ function OpenGame({ openGame, setOpenGame }) {
 		<>
 			<div className='modal-overlay' />
 			<div className='open-game-modal'>
+				<button className='close-game' onClick={onClose}>
+					X
+				</button>
 				<header className='game-header'>
-					<h4>playing with {yourPartner}</h4>
-					<button className='close-game' onClick={onClose}>
-						X
-					</button>
+					<h4 className='game-header'>playing with {yourPartner}</h4>
+					<h5 className='game-header'>it's a color conspiracy!</h5>
 				</header>
 				{/* ======= */}
-				<div className='game-frame'>
-					<section className='color-display'>
-						<ColorPicker />
-					</section>
-					{/* ======= */}
-					<div className='message-display'>
-						<ChatHistory />
-					</div>
-					{/* ======= */}
+				<section className='color-display'>
+					<ColorPicker />
+				</section>
+				{/* ======= */}
+				{/* <div className='message-display'> */}
+				<ChatHistory />
+				{/* </div> */}
+				{/* ======= */}
+				<div className='footer-form'>
 					<form className='send-message' onSubmit={handleSubmit}>
 						<input
+							className='textbox'
 							required
 							type='textarea'
 							value={text}
 							onChange={handleChange}
 						/>
-						<input type='submit' value='send' />
+						<button className='send-button' type='submit' value='>' />
 					</form>
 				</div>
 			</div>

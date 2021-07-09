@@ -18,72 +18,123 @@
 	width: 80%;
 	height: 78%;
 
-	display: flex;
-	flex-flow: column nowrap;
-	/* grid-template-columns: 1fr 40px;
-	grid-row: 25px 3px auto 1fr 25px; */
+	display: grid;
+	grid-template-columns: 1fr 40px;
+	grid-template-rows:
+		[header-start] 40px
+		[header-end color-start] auto [color-end clues-start] auto
+		[clues-end form-start] 30px;
 
-	justify-content: space-evenly;
-	align-items: center;
+	column-gap: 0;
+	row-gap: 10px;
 }
 
 .game-header {
-	width: 95%;
-	height: 25px;
-	padding: 3px;
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	width: 100%;
+	height: max-content;
 
-	justify-self: flex-start;
-
-	display: grid;
-	grid-template-columns: auto 25px;
-	justify-content: stretch;
-	align-items: center;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .game-header h4 {
-	grid-column: 1;
 	margin: 0;
-	padding: 2%;
+	padding: 1%;
+}
+
+.game-header h5 {
+	margin: 0;
+	padding-bottom: 7px;
+	padding-left: 10px;
 }
 
 .close-game {
 	grid-column: 2;
-	width: 25px;
-	height: 25px;
+	grid-row: 1 / span 2;
+	width: 40px;
+	height: 40px;
 	border-radius: 20px;
 	padding: 1%;
 }
 
-.game-frame {
-	width: 90%;
-	top: 30px;
-	bottom: 5px;
+.color-display {
+	grid-column: 1 / span 2;
+	grid-row: 2;
+	width: 100%;
+}
+
+/* .message-display {
+} */
+
+.messages {
+	grid-column: 1 / span 2;
+	grid-row: 3;
+	width: auto;
+	height: 360px;
+	background-color: rgba(255, 255, 255, 0.603);
+	border-radius: 10px;
+	padding: 1%;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	overflow-x: wrap;
+	overflow-y: auto;
 
 	display: flex;
 	flex-flow: column nowrap;
-	justify-content: space-evenly;
-	align-items: center;
+	align-items: flex-end;
+	justify-content: flex-end;
 }
 
-.color-display {
+.single-message-text {
+	font-size: 12pt;
+	color: #0c5656;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+.single-message-name {
+	font-size: 10pt;
+	color: #2e9d92;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	text-align: right;
+}
+
+.footer-form {
+	grid-column: 1 / span 2;
+	grid-row: 4;
+	align-self: start;
+}
+
+.send-message form {
 	width: 100%;
-}
+	height: 100%;
 
-.game-frame form {
-	justify-self: flex-end;
-	width: 100%;
-}
-
-.message-display {
-	width: 100%;
-	height: 300px;
-	background-color: rgba(255, 255, 255, 0.603);
-	border-radius: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-.messages {
 	display: flex;
-	flex-flow: column-reverse nowrap;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.textbox {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	float: left;
+	width: 75%;
+}
+
+.send-button {
+	padding: 0;
+	margin: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	width: 20%;
+	height: 20px;
+	float: right;
 }
