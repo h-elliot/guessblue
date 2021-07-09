@@ -17,11 +17,12 @@ function App() {
 	// everything in our dashboard has the friends/games context now bc we're providing it here
 	const dashboard = (
 		<FriendsProvider>
-			<GamesProvider>
+			<GamesProvider id={id}>
 				<Dashboard id={id} />
 			</GamesProvider>
 		</FriendsProvider>
 	);
+	// the id we're passing in above ^ is our own
 
 	return (
 		<div className='App'>

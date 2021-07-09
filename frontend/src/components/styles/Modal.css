@@ -14,10 +14,40 @@
 	background-color: peachpuff;
 	z-index: 1000;
 	padding: 2%;
+	border-radius: 15px;
+	width: 80%;
+	height: 78%;
+}
+
+.game-header header {
+	position: fixed;
+	top: 0;
+	display: grid;
+	grid-template-columns: auto 20px;
+	grid-row: 25px 5px;
+}
+
+.game-header h3 {
+	grid-column: 1;
+	grid-row: 1;
 }
 
 .close-game {
+	grid-column: 2;
+	grid-row: 1;
 	width: 20px;
 	height: 20px;
 	float: right;
+}
+
+.game-frame {
+	position: fixed;
+	top: 35px;
+	bottom: 0;
+
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.game-frame form {
 }
