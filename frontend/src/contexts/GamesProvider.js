@@ -14,9 +14,7 @@ export function GamesProvider({ children, id }) {
 	const { friends } = useFriends();
 
 	function createGame(partner) {
-		console.log(partner);
 		setGames((prevGames) => {
-			console.log(...prevGames, { partner, messages: [] });
 			return [...prevGames, { partner, messages: [] }];
 		});
 	}
@@ -45,23 +43,18 @@ export function GamesProvider({ children, id }) {
 		return { ...game, messages, selected };
 	});
 
-	console.log(`GAMES:`);
-	console.log(games);
-
-	console.log(`formattedGAMES:`);
-	console.log(formattedGames);
-
 	// this function [1] receives incoming info about a message,
 	// [2] checks if a game exists with the current partner,
 	// [2.1] if it matches, add the new message to match partner's messages array
 	// [2.2] if it doesnt, create a new game object with the partner, and new message
-	function addMessageToConversation({ parter, text, sender }) {
+	function addMessageToConversation({ partner, text, sender }) {
+		console.log(JSON.stringify(text)); // works
 		setGames((prevGames) => {
 			let gameMatches = false;
-			const partner = parter;
+			// const partner = partner;
 			const newMessage = { sender, text };
 			const newGame = prevGames.map((game) => {
-				if (game.partner === parter) {
+				if (game.partner === partner) {
 					gameMatches = true;
 					return {
 						...game,

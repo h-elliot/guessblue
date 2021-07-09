@@ -2,11 +2,7 @@ import React from 'react';
 import { useGames } from '../../contexts/GamesProvider';
 
 function Games({ setOpenGame }) {
-	const { games, selectedGame, selectGameIndex } = useGames();
-
-	console.log('format games:');
-	console.log(games);
-	console.log(selectedGame);
+	const { games, selectGameIndex } = useGames();
 
 	function handleClick(e) {
 		e.preventDefault();
@@ -15,10 +11,6 @@ function Games({ setOpenGame }) {
 		console.log(`${e.target.value} selected!`);
 		setOpenGame(true);
 	}
-
-	console.log(`new selectedGame: ${JSON.stringify(selectedGame)}`);
-	console.log(`new games array:`);
-	console.log(games);
 
 	return (
 		<>
