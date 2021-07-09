@@ -17,37 +17,73 @@
 	border-radius: 15px;
 	width: 80%;
 	height: 78%;
+
+	display: flex;
+	flex-flow: column nowrap;
+	/* grid-template-columns: 1fr 40px;
+	grid-row: 25px 3px auto 1fr 25px; */
+
+	justify-content: space-evenly;
+	align-items: center;
 }
 
-.game-header header {
-	position: fixed;
-	top: 0;
+.game-header {
+	width: 95%;
+	height: 25px;
+	padding: 3px;
+
+	justify-self: flex-start;
+
 	display: grid;
-	grid-template-columns: auto 20px;
-	grid-row: 25px 5px;
+	grid-template-columns: auto 25px;
+	justify-content: stretch;
+	align-items: center;
 }
 
-.game-header h3 {
+.game-header h4 {
 	grid-column: 1;
-	grid-row: 1;
+	margin: 0;
+	padding: 2%;
 }
 
 .close-game {
 	grid-column: 2;
-	grid-row: 1;
-	width: 20px;
-	height: 20px;
-	float: right;
+	width: 25px;
+	height: 25px;
+	border-radius: 20px;
+	padding: 1%;
 }
 
 .game-frame {
-	position: fixed;
-	top: 35px;
-	bottom: 0;
+	width: 90%;
+	top: 30px;
+	bottom: 5px;
 
 	display: flex;
 	flex-flow: column nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.color-display {
+	width: 100%;
 }
 
 .game-frame form {
+	justify-self: flex-end;
+	width: 100%;
+}
+
+.message-display {
+	width: 100%;
+	height: 300px;
+	background-color: rgba(255, 255, 255, 0.603);
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.messages {
+	display: flex;
+	flex-flow: column-reverse nowrap;
 }

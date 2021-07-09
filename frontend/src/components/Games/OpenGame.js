@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useGames } from '../../contexts/GamesProvider';
+import ColorPicker from './InnerGameComponents/ColorPicker';
+import ChatHistory from './InnerGameComponents/ChatHistory';
 import '../styles/Modal.css';
 
 function OpenGame({ openGame, setOpenGame }) {
@@ -33,15 +35,22 @@ function OpenGame({ openGame, setOpenGame }) {
 			<div className='modal-overlay' />
 			<div className='open-game-modal'>
 				<header className='game-header'>
-					<h3>playing with {yourPartner}</h3>
+					<h4>playing with {yourPartner}</h4>
 					<button className='close-game' onClick={onClose}>
 						X
 					</button>
 				</header>
+				{/* ======= */}
 				<div className='game-frame'>
-					<section className='color-display'></section>
-
-					<form onSubmit={handleSubmit}>
+					<section className='color-display'>
+						<ColorPicker />
+					</section>
+					{/* ======= */}
+					<div className='message-display'>
+						<ChatHistory />
+					</div>
+					{/* ======= */}
+					<form className='send-message' onSubmit={handleSubmit}>
 						<input
 							required
 							type='textarea'

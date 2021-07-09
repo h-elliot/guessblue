@@ -33,7 +33,16 @@ export function GamesProvider({ children, id }) {
 
 	const formattedGames = games.map((game, index) => {
 		const selected = index === selectedGameIndex;
-		return { ...game, selected };
+		const messages = game.messages.map((message) => {
+			const friend = friends.find((friend) => {
+				return friend.id === message.sender;
+			});
+			const name = (friend && friend.name) || message.sender;
+			const fromMe = id === message.sender;
+			return { ...message, senderName: name, fromMe };
+		});
+
+		return { ...game, messages, selected };
 	});
 
 	console.log(`GAMES:`);
