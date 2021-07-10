@@ -7,20 +7,21 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import { FriendsProvider } from './contexts/FriendsProvider';
 import { GamesProvider } from './contexts/GamesProvider';
+import { SocketProvider } from './contexts/SocketProvider';
 
 function App() {
 	console.clear();
-
-	// const [player, setPlayer] = useState('');
 	const [id, setId] = useLocalStorage('id');
 
 	// everything in our dashboard has the friends/games context now bc we're providing it here
 	const dashboard = (
-		<FriendsProvider>
-			<GamesProvider id={id}>
-				<Dashboard id={id} />
-			</GamesProvider>
-		</FriendsProvider>
+		<SocketProvider id={id}>
+			<FriendsProvider>
+				<GamesProvider id={id}>
+					<Dashboard id={id} />
+				</GamesProvider>
+			</FriendsProvider>
+		</SocketProvider>
 	);
 	// the id we're passing in above ^ is our own
 

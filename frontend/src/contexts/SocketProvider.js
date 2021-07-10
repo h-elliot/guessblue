@@ -18,5 +18,7 @@ export function SocketProvider({ id, children }) {
 		return () => newSocket.close();
 	}, [id]);
 
-	return <SocketContext.Provider value={socket}></SocketContext.Provider>;
+	return (
+		<SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+	);
 }

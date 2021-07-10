@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useFriends } from './FriendsProvider';
+import { useSocket } from './SocketProvider';
 
 const GamesContext = React.createContext();
 
@@ -12,6 +13,7 @@ export function GamesProvider({ children, id }) {
 	const [games, setGames] = useLocalStorage('games', []);
 	const [selectedGameIndex, setSelectedGameIndex] = useState(0);
 	const { friends } = useFriends();
+	const socket = useSocket();
 
 	function createGame(partner) {
 		setGames((prevGames) => {
@@ -47,33 +49,47 @@ export function GamesProvider({ children, id }) {
 	// [2] checks if a game exists with the current partner,
 	// [2.1] if it matches, add the new message to match partner's messages array
 	// [2.2] if it doesnt, create a new game object with the partner, and new message
-	function addMessageToConversation({ partner, text, sender }) {
-		console.log(JSON.stringify(text)); // works
-		setGames((prevGames) => {
-			let gameMatches = false;
-			// const partner = partner;
-			const newMessage = { sender, text };
-			const newGame = prevGames.map((game) => {
-				if (game.partner === partner) {
-					gameMatches = true;
-					return {
-						...game,
-						messages: [...game.messages, newMessage],
-					};
-				}
-				return game;
-			});
+	const addMessageToConversation = useCallback(
+		({ partner, text, sender }) => {
+			console.log(JSON.stringify(text)); // works
+			setGames((prevGames) => {
+				let gameMatches = false;
+				const newMessage = { sender, text };
+				const newGame = prevGames.map((game) => {
+					if (game.partner === partner) {
+						gameMatches = true;
+						return {
+							...game,
+							messages: [...game.messages, newMessage],
+						};
+					}
+					return game;
+				});
 
-			if (gameMatches) {
-				return newGame;
-			} else {
-				// if gameMatches is false
-				return [...prevGames, { partner, messages: [newMessage] }];
-			}
-		});
-	}
+				if (gameMatches) {
+					return newGame;
+				} else {
+					// if gameMatches is false
+					return [...prevGames, { partner, messages: [newMessage] }];
+				}
+			});
+		},
+		[setGames]
+	);
+
+	useEffect(() => {
+		if (socket == null) {
+			console.log('SOCKET IS NULL');
+			return;
+		}
+		socket.on('receive-message', addMessageToConversation);
+
+		return () => socket.off('receive-message');
+	}, [socket, addMessageToConversation]);
 
 	function sendMessage(partner, text) {
+		socket.emit('send-message', { partner, text });
+
 		addMessageToConversation({ partner, text, sender: id });
 	}
 

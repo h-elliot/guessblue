@@ -59,7 +59,7 @@ function OpenGame({ openGame, setOpenGame }) {
 							value={text}
 							onChange={handleChange}
 						/>
-						<button className='send-button' type='submit' value='>' />
+						<button className='send-button' type='submit' value='send' />
 					</form>
 				</div>
 			</div>
