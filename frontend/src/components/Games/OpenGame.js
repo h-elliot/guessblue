@@ -9,13 +9,13 @@ function OpenGame({ openGame, setOpenGame }) {
 
 	// == hooks ==
 	const [text, setText] = useState('');
-	const { games, formattedGames, selectedGame, sendMessage } = useGames();
+	const { selectedGame, sendMessage } = useGames();
 
 	// == functions | variables ==
 
-	let yourPartner = selectedGame.name;
+	let yourPartner = selectedGame ? selectedGame.name : null;
 
-	function onClose() {
+	function closeGame() {
 		setOpenGame(false);
 	}
 
@@ -29,14 +29,14 @@ function OpenGame({ openGame, setOpenGame }) {
 	}
 
 	// == renders ==
-	// if (!openGame) return null;
+	if (!openGame) return null;
 	return (
 		<>
-			<div className='modal-overlay' />
+			<div className='modal-overlay' onClick={closeGame} />
 			<div className='open-game-modal'>
-				<button className='close-game' onClick={onClose}>
+				{/* <button className='close-game' onClick={closeGame}>
 					X
-				</button>
+				</button> */}
 				<header className='game-header'>
 					<h4 className='game-header'>playing with {yourPartner}</h4>
 					<h5 className='game-header'>it's a color conspiracy!</h5>

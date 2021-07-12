@@ -12,7 +12,7 @@ function Dashboard({ id }) {
 
 	// == states | refs | contexts ==
 	const { selectedGame } = useGames();
-	const [toggleTab, setToggleTab] = useState(true);
+	const [toggleTab, setToggleTab] = useState(false);
 	const [openGame, setOpenGame] = useState(false);
 	// == functions | variables ==
 
@@ -20,9 +20,8 @@ function Dashboard({ id }) {
 
 	return (
 		<div className='dashboard'>
-			{openGame ? (
-				<OpenGame openGame={openGame} setOpenGame={setOpenGame} />
-			) : null}
+			<OpenGame openGame={openGame} setOpenGame={setOpenGame} />
+
 			<div className='dash-main'>
 				{toggleTab ? <GamesList setOpenGame={setOpenGame} /> : <FriendsList />}
 			</div>

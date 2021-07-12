@@ -6,9 +6,7 @@ function Games({ setOpenGame }) {
 
 	function handleClick(e) {
 		e.preventDefault();
-		console.log('click!');
 		selectGameIndex(e.target.value);
-		console.log(`${e.target.value} selected!`);
 		setOpenGame(true);
 	}
 

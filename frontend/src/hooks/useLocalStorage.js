@@ -10,8 +10,13 @@ function useLocalStorage(key, initialValue) {
 	// store the initial value in state so we can save it locally
 	const [value, setValue] = useState(() => {
 		const jsonValue = localStorage.getItem(prefixedKey);
-		if (jsonValue !== 'undefined' && jsonValue !== null)
-			return JSON.parse(jsonValue);
+		if (jsonValue != null) {
+			if (jsonValue === 'undefined') {
+				return null;
+			} else {
+				return JSON.parse(jsonValue);
+			}
+		}
 		if (typeof initialValue === 'function') {
 			return initialValue();
 		} else {

@@ -17,6 +17,11 @@ export function GamesProvider({ children, id }) {
 
 	function createGame(partner) {
 		setGames((prevGames) => {
+			if (prevGames.includes(partner)) {
+				console.log('Sorry, you already have a game with them.');
+				// launch game?
+				return;
+			}
 			return [...prevGames, { partner, messages: [] }];
 		});
 	}
@@ -51,7 +56,7 @@ export function GamesProvider({ children, id }) {
 	// [2.2] if it doesnt, create a new game object with the partner, and new message
 	const addMessageToConversation = useCallback(
 		({ partner, text, sender }) => {
-			console.log(JSON.stringify(text)); // works
+			console.log(`📟 ${JSON.stringify(text)}`); // works
 			setGames((prevGames) => {
 				let gameMatches = false;
 				const newMessage = { sender, text };
@@ -79,7 +84,7 @@ export function GamesProvider({ children, id }) {
 
 	useEffect(() => {
 		if (socket == null) {
-			console.log('SOCKET IS NULL');
+			console.log('🕳️ SOCKET IS NULL');
 			return;
 		}
 		socket.on('receive-message', addMessageToConversation);

@@ -1,20 +1,47 @@
-const io = require('socket.io')(4040);
+const express = require('express');
+const app = express();
+const cors = require('cors');
+app.use(cors());
+
+const server = require('http').createServer(app);
+
+const io = require('socket.io')(server, {
+	cors: {
+		origin: '*',
+		methods: ['GET', 'POST'],
+	},
+});
+
+const PORT = 4040;
+
+server.listen(4040, () => {
+	console.log(`📡 SERVER RUNNING ON ${PORT} 💻`);
+});
 
 // creating our own ids for socketID, bc we already have our own static ids
 // we want a static id that doesnt change when we refresh
 io.on('connection', (socket) => {
 	const id = socket.handshake.query.id;
 	socket.join(id);
+	console.log(`🔌 NEW SOCKET ID: ${socket.id} | 🤝 QUERY ID: ${id}`);
 
+	// when we receive the output 'send-message':
+	// from sendMessage in GamesProvider
+	// this func RECEIVES our partner and text
 	socket.on('send-message', ({ partner, text }) => {
-		partner.forEach((partner) => {
-			const newPartner = partner.filter((p) => p !== partner);
-			newPartner.push(id);
-			socket.broadcast.to(partner).emit('receive-message', {
-				partner: newPartner,
-				sender: id,
-				text,
-			});
+		console.log(`💬 [${partner}] ${text}`);
+		// and then broadcasts to partner:
+		// object called 'receive-message'
+		// that has partner, sender (with our id)
+		// and the message text
+
+		// swap sender and partner--hope it works
+		// let sender = id;
+		// partner = [sender, (sender = partner)][0];
+		socket.broadcast.to(partner).emit('receive-message', {
+			partner,
+			sender: id,
+			text,
 		});
 	});
 });
