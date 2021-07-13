@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFriends } from '../../contexts/FriendsProvider';
 
 function Friends() {

@@ -42,14 +42,31 @@
 
 #submit-new-friend {
 	grid-column: 5;
-	grid-row-start: 1;
-	grid-row-end: span 2;
+	grid-row: 1;
 
 	font-weight: 500;
-	font-size: 15pt;
-	height: 35px;
+	font-size: 8pt;
+	height: 20px;
 	width: 35px;
 	border-radius: 35px;
+	padding: 0;
+	background-color: #008b8b;
+	border: none;
+	color: turquoise;
+}
+
+#delete-friend {
+	grid-column: 5;
+	grid-row: 2;
+
+	font-weight: 1000;
+	font-size: 10pt;
+	height: 20px;
+	width: 35px;
+	border-radius: 35px;
+	background-color: tomato;
+	border: none;
+	color: peachpuff;
 }
 
 .friends-list {

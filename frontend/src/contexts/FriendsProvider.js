@@ -23,8 +23,22 @@ export function FriendsProvider({ children }) {
 		});
 	}
 
+	function updateNickname(id, nickname) {
+		let newName = nickname;
+		console.log(`newName: ${newName}`);
+		let index = friends.findIndex((friend) => friend.id === id);
+		friends[index].name = newName;
+		console.log(`updated nickname: ${friends[index].name}`);
+		return;
+	}
+
+	function deleteFriend(id) {
+		setFriends(friends.filter((f) => f.id != id));
+	}
+
 	return (
-		<FriendsContext.Provider value={{ friends, addFriend }}>
+		<FriendsContext.Provider
+			value={{ friends, addFriend, deleteFriend, updateNickname }}>
 			{children}
 		</FriendsContext.Provider>
 	);

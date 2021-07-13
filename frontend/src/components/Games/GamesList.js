@@ -7,18 +7,13 @@ import '../styles/GamesList.css';
 function GamesList({ setOpenGame }) {
 	// == notes ==
 
-	// == context ==
+	// == hooks ==
 	const { friends } = useFriends();
 	const { createGame } = useGames();
-
-	// == refs ==
-	// const idRef = useRef();
-
-	// == states ==
 	const [selectedFriendId, setSelectedFriendId] = useState('');
 	let gamePartner = selectedFriendId;
 
-	// == functions ==
+	// == functions | variables ==
 
 	function handleSelect(e) {
 		setSelectedFriendId(e.target.value);

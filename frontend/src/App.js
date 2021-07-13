@@ -10,7 +10,7 @@ import { GamesProvider } from './contexts/GamesProvider';
 import { SocketProvider } from './contexts/SocketProvider';
 
 function App() {
-	console.clear();
+	// console.clear();
 	const [id, setId] = useLocalStorage('id');
 
 	// everything in our dashboard has the friends/games context now bc we're providing it here

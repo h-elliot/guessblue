@@ -1,25 +1,52 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFriends } from '../../contexts/FriendsProvider';
 import Friends from './Friends';
 import '../styles/FriendsList.css';
 
-//? how do users connect to friends?
-//todo	- copy and paste id into friends list
-
-//? how do users start a chat with a friend?
-//todo 	- click friend's name to invite to start a game and chat
-
-//! currently you can add any friend, even if they don't exist
-
 function FriendsList() {
+	// == notes ==
+	//! currently you can add any friend, even if they don't exist
+
+	// == hooks ==
 	const idRef = useRef();
 	const nameRef = useRef();
-	const { addFriend } = useFriends();
+	const { friends, addFriend, deleteFriend, updateNickname } = useFriends();
+	// i want a state to update in order to rerender the friends map
+	const [updatedNickname, setUpdatedNickname] = useState(false);
+
+	// == functions | variables ==
+
+	const allIds = friends.map((friend) => friend.id);
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		// useRef uses the 'current.value' to reflect its content (in the input field) at time of use
-		addFriend(idRef.current.value, nameRef.current.value);
+		let id = idRef.current.value;
+		let name = nameRef.current.value;
+		console.log(`id: ${id}\nname: ${name}`);
+
+		// console.log(allIds.includes(id));
+		if (allIds.includes(id)) {
+			updateNickname(id, name);
+			if (updatedNickname) {
+				setUpdatedNickname(false);
+			} else {
+				setUpdatedNickname(true);
+				return;
+			}
+		} else {
+			addFriend(id, name);
+		}
+	}
+
+	function checkUnique(id) {
+		console.log(`allIds: \n${allIds}`);
+	}
+
+	function handleDelete(e) {
+		e.preventDefault();
+
+		deleteFriend(idRef.current.value);
 	}
 
 	return (
@@ -52,12 +79,16 @@ function FriendsList() {
 					/>
 
 					<input type='submit' id='submit-new-friend' value='+' />
+					<button id='delete-friend' onClick={handleDelete}>
+						-
+					</button>
 				</form>
 			</div>
 			<div className='friends-list'>
 				<ul className='added-friends'>
 					<Friends />
 				</ul>
+				<button onClick={checkUnique}>?</button>
 			</div>
 		</div>
 	);
