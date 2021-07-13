@@ -1,0 +1,137 @@
+.modal-overlay {
+	position: fixed;
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 56, 56, 0.568);
+}
+
+.open-game-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: peachpuff;
+	z-index: 1000;
+	padding: 2%;
+	border-radius: 15px;
+	width: 80%;
+	height: 78%;
+
+	display: grid;
+	grid-template-columns: 1fr 40px;
+	grid-template-rows:
+		[header-start] 40px
+		[header-end color-start] auto [color-end clues-start] auto
+		[clues-end form-start] 30px;
+
+	column-gap: 0;
+	row-gap: 10px;
+}
+
+.game-header {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	width: 100%;
+	height: max-content;
+
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.game-header h4 {
+	margin: 0;
+	padding: 1%;
+}
+
+.game-header h5 {
+	margin: 0;
+	padding-bottom: 7px;
+	padding-left: 10px;
+}
+
+.close-game {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	padding: 1%;
+}
+
+.color-display {
+	grid-column: 1 / span 2;
+	grid-row: 2;
+	width: 100%;
+}
+
+/* .message-display {
+} */
+
+.messages {
+	grid-column: 1 / span 2;
+	grid-row: 3;
+	width: auto;
+	height: 375px;
+	background-color: rgba(255, 255, 255, 0.603);
+	border-radius: 10px;
+	padding: 1%;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	overflow-x: wrap;
+	overflow-y: auto;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.single-message-text {
+	font-size: 12pt;
+	color: #0c5656;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+.single-message-name {
+	font-size: 10pt;
+	color: #2e9d92;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	text-align: right;
+}
+
+.footer-form {
+	grid-column: 1 / span 2;
+	grid-row: 4;
+	align-self: start;
+}
+
+.send-message form {
+	width: 100%;
+	height: 100%;
+}
+
+.textbox {
+	position: fixed;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	float: left;
+	width: 90%;
+}
+
+.send-button {
+	position: fixed;
+	padding: 0;
+	margin: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	width: 20%;
+	height: 20px;
+	right: 2.5%;
+}

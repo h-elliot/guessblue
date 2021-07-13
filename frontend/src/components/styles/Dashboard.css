@@ -1,0 +1,94 @@
+/* ======
+DASHBOARD
+====== */
+
+.dashboard {
+	position: fixed;
+	top: 12vh;
+	bottom: 80px;
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.dash-main {
+	height: 90%;
+	width: 80%;
+	padding: 4%;
+	border-radius: 10px;
+	background-color: turquoise;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+/* ===
+FOOTER
+=== */
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-end;
+	justify-content: space-evenly;
+}
+
+.id-display {
+	width: 100%;
+	height: 25px;
+	margin: 0;
+	background-color: darkturquoise;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.id-display p {
+	font-size: small;
+}
+
+.footer-tabs {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+button {
+	height: 100%;
+	width: 100%;
+	background-color: turquoise;
+	border: none;
+}
+button:hover {
+	background-color: darkcyan;
+}
+button:active {
+	background-color: teal;
+	border-top: 2px solid turquoise;
+}
+/* 
+#big-game-tab button {
+	flex-grow: 2;
+}
+
+#big-friends-tab button {
+	flex-grow: 2;
+} */
+
+/* #small-tab button {
+	width: 20%;
+} */

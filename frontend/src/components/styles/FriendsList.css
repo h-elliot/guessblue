@@ -1,0 +1,88 @@
+.friends {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+}
+
+.invite-friend form {
+	width: 100%;
+	height: 50px;
+	display: grid;
+	grid-template-columns: auto 5px auto 5px 40px;
+	grid-template-rows: min-content min-content;
+	gap: 2px;
+	place-items: center;
+}
+
+.invite-friend input[type='text'] {
+	width: 100%;
+}
+
+#id-label {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#name-label {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+#new-friend-id {
+	grid-column: 3;
+	grid-row: 1;
+}
+
+#new-friend-name {
+	grid-column: 3;
+	grid-row: 2;
+}
+
+#submit-new-friend {
+	grid-column: 5;
+	grid-row: 1;
+
+	font-weight: 500;
+	font-size: 8pt;
+	height: 20px;
+	width: 35px;
+	border-radius: 35px;
+	padding: 0;
+	background-color: #008b8b;
+	border: none;
+	color: turquoise;
+}
+
+#delete-friend {
+	grid-column: 5;
+	grid-row: 2;
+
+	font-weight: 1000;
+	font-size: 10pt;
+	height: 20px;
+	width: 35px;
+	border-radius: 35px;
+	background-color: tomato;
+	border: none;
+	color: peachpuff;
+}
+
+.friends-list {
+	height: 80%;
+	overflow: auto;
+}
+
+.friends-list ul {
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+.friends-list li {
+	padding: 10px 5px;
+}
+
+.added-friends {
+	margin: 0;
+}

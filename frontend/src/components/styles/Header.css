@@ -1,0 +1,22 @@
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.logo {
+	font-family: 'Paytone One';
+	font-size: 42pt;
+	color: tomato;
+	letter-spacing: -6px;
+	text-shadow: 0px -7px peachpuff;
+}
+
+header span {
+	color: turquoise;
+	text-shadow: 0px -7px darkcyan;
+}
