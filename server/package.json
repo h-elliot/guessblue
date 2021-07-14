@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devStart": "nodemon server.js",
-     "build": "cd client && npm install && npm run build"
+     "build": "cd client && npm install && npm run build",
+    "start": "node server/index.js"
   },
   "author": "rook",
   "dependencies": {

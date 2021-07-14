@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "bootstrap": "^4.6.0",
-    "react-color": "^2.19.3",
-    "simple-react-modal": "^0.5.1"
+    "react-color": "^2.19.3"
   }
 }
