@@ -1,6 +1,6 @@
 import './fonts.css';
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/header comps/Header';
 import Login from './components/Login';
@@ -12,6 +12,7 @@ import { SocketProvider } from './contexts/SocketProvider';
 function App() {
 	// console.clear();
 	const [id, setId] = useLocalStorage('id');
+	const [data, setData] = useState('');
 
 	React.useEffect(() => {
 		fetch('/api')

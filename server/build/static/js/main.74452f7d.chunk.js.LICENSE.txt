@@ -1,0 +1,3 @@
+//! currently you can add any friend, even if they don't exist
+
+//! fix id copy-onClick
