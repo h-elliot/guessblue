@@ -1,8 +1,5 @@
 {
-  "dependencies": {
-    "react-color": "^2.19.3"
-  },
   "scripts": {
-   "start": "node server/index.js"
+    "start": "node server/index.js"
   }
 }
