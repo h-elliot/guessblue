@@ -1,9 +1,23 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 app.use(cors());
 
 const server = require('http').createServer(app);
+
+// have node serve the files for our built react app
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+// handle GET requests to /api route
+app.get('/api', (req, res) => {
+	res.json({ message: 'Hello from server!' });
+});
+
+// all other GET requests not handled before will return our react app
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 const io = require('socket.io')(server, {
 	cors: {

@@ -13,6 +13,12 @@ function App() {
 	// console.clear();
 	const [id, setId] = useLocalStorage('id');
 
+	React.useEffect(() => {
+		fetch('/api')
+			.then((res) => res.json())
+			.then((data) => setData(data.message));
+	}, []);
+
 	// everything in our dashboard has the friends/games context now bc we're providing it here
 	const dashboard = (
 		<SocketProvider id={id}>
