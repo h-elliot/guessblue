@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/guessblue/static/css/main.f62367c5.chunk.css",
+    "main.js": "/guessblue/static/js/main.e7778cc5.chunk.js",
+    "main.js.map": "/guessblue/static/js/main.e7778cc5.chunk.js.map",
+    "runtime-main.js": "/guessblue/static/js/runtime-main.fc4f0121.js",
+    "runtime-main.js.map": "/guessblue/static/js/runtime-main.fc4f0121.js.map",
+    "static/js/2.68e6189e.chunk.js": "/guessblue/static/js/2.68e6189e.chunk.js",
+    "static/js/2.68e6189e.chunk.js.map": "/guessblue/static/js/2.68e6189e.chunk.js.map",
+    "static/js/3.20dbf2ed.chunk.js": "/guessblue/static/js/3.20dbf2ed.chunk.js",
+    "static/js/3.20dbf2ed.chunk.js.map": "/guessblue/static/js/3.20dbf2ed.chunk.js.map",
+    "index.html": "/guessblue/index.html",
+    "static/css/main.f62367c5.chunk.css.map": "/guessblue/static/css/main.f62367c5.chunk.css.map",
+    "static/js/2.68e6189e.chunk.js.LICENSE.txt": "/guessblue/static/js/2.68e6189e.chunk.js.LICENSE.txt",
+    "static/js/main.e7778cc5.chunk.js.LICENSE.txt": "/guessblue/static/js/main.e7778cc5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fc4f0121.js",
+    "static/js/2.68e6189e.chunk.js",
+    "static/css/main.f62367c5.chunk.css",
+    "static/js/main.e7778cc5.chunk.js"
+  ]
+}
