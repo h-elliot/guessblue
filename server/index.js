@@ -26,9 +26,9 @@ const io = require('socket.io')(server, {
 	},
 });
 
-const PORT = 4040;
+const PORT = process.env.PORT || 4040;
 
-server.listen(4040, () => {
+server.listen(PORT, () => {
 	console.log(`📡 SERVER RUNNING ON ${PORT} 💻`);
 });
 
@@ -49,9 +49,6 @@ io.on('connection', (socket) => {
 		// that has partner, sender (with our id)
 		// and the message text
 
-		// swap sender and partner--hope it works
-		// let sender = id;
-		// partner = [sender, (sender = partner)][0];
 		socket.broadcast.to(partner).emit('receive-message', {
 			partner,
 			sender: id,
