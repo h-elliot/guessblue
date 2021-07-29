@@ -33,7 +33,7 @@ export function FriendsProvider({ children }) {
 	}
 
 	function deleteFriend(id) {
-		setFriends(friends.filter((f) => f.id != id));
+		setFriends(friends.filter((f) => f.id !== id));
 	}
 
 	return (

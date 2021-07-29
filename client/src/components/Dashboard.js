@@ -28,7 +28,7 @@ function Dashboard({ id }) {
 			<footer>
 				<div className='id-display'>
 					<p>
-						your id:
+						your id:{' '}
 						<span
 							className='id-span'
 							// onClick={() => {
