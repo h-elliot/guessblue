@@ -40,7 +40,7 @@ function GamesList({ setOpenGame }) {
 						name='choose-friend'
 						id='choose-friend'
 						onChange={handleSelect}>
-						<option selected value='pick a friend'>
+						<option defaultValue='pick a friend'>
 							pick your favorite friend
 						</option>
 						{friends.map((friend) => (

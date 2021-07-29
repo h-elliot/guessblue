@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { nanoid } from 'nanoid';
 import { v4 as uuidv4 } from 'uuid';
 import './styles/Login.css';
 
@@ -12,7 +13,8 @@ function Login({ onIdSubmit }) {
 	}
 
 	function createNewId(e) {
-		onIdSubmit(uuidv4());
+		// onIdSubmit(uuidv4());
+		onIdSubmit(nanoid());
 	}
 	return (
 		<div className='login'>
@@ -33,7 +35,7 @@ function Login({ onIdSubmit }) {
 				<br />
 				<input
 					type='text'
-					placeholder='a bunch of special letters and numbers'
+					placeholder='a random ID code'
 					name='id'
 					ref={idRef}
 					required></input>
