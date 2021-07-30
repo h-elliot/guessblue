@@ -90,43 +90,24 @@ export function GamesProvider({ children, id }) {
 		// [7]
 	});
 
-	// ==================== current example of a game: ====================
-	//		PN9ZQmcbBI3o9PgWipnM_ tues >>> a6I5D0lybwCNWxTHeS5Y1 wed
-	// [
-	// 	{
-	//* 		partner: 'a6I5D0lybwCNWxTHeS5Y1',
-	// 		messages: [
-	//*			{ sender: 'PN9ZQmcbBI3o9PgWipnM_', text: 'Wednes, do you see this?' },
-	//todo		{ sender: 'a6I5D0lybwCNWxTHeS5Y1', text: 'i see u sent me a msg!' },
-	// 		],
-	//!	 this message appears with no name in the gameslist
-	//!  the json data here has no 'name:' or 'index:'
-	// 	},
-	// ];
-
-	//?		a6I5D0lybwCNWxTHeS5Y1 wed >>> PN9ZQmcbBI3o9PgWipnM_ tues
-	// [
-	// 	{
-	//todo 		partner: 'a6I5D0lybwCNWxTHeS5Y1',
-	// 		messages: [
-	//* 			{ sender: 'PN9ZQmcbBI3o9PgWipnM_', text: 'Wednes, do you see this?' },
-	// 		],
-	//!		name: 'wednesday',
-	//! 	index: [0],
-	// 	},
-	// ];
-	// ====================================================================
-
 	//* HOW deleteGame WORKS
-	// [1]	takes in the gameId (/or game partner?)
+	// [1]	takes in the gameId
 	// [2]	filter allows all games through that dont
-	//		match the selected game ID
+	//		match the gameToDelete
 	// [3]	sets games to the ones that pass the filter
+	//!		it dont work tho.....
 
-	function deleteGame(selectedGameId) {
-		console.log(`gameId: ${selectedGameId}`);
-		console.log(`game info: \n ${games.gameId === selectedGameId}`);
-		setGames(games.filter((g) => games.gameId !== selectedGameId));
+	function deleteGame(gameToDelete) {
+		console.log(`gameId: ${gameToDelete}`);
+		console.log(`game info: \n ${games.hasOwnProperty()}`);
+
+		const freshNewGames = games.filter(
+			(game) => game['gameId'] !== gameToDelete
+		);
+
+		console.log(`freshNewGames:`);
+		console.log(JSON.stringify(freshNewGames));
+		setGames(freshNewGames);
 	}
 
 	//todo =================================================================

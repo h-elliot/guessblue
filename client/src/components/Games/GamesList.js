@@ -24,7 +24,6 @@ function GamesList({ setOpenGame }) {
 		e.preventDefault();
 
 		const gameId = nanoid();
-		console.log(`gameId: ${gameId}`);
 
 		let duplicateGame = false;
 
