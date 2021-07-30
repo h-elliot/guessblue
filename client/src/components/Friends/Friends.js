@@ -8,7 +8,9 @@ function Friends() {
 		<>
 			<ul>
 				{friends.map((friend) => (
-					<li key={friend.id}>{friend.name}</li>
+					<li key={friend.id}>
+						{friend.name} <sub>{friend.id}</sub>
+					</li>
 				))}
 			</ul>
 		</>

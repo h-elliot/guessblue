@@ -1,8 +1,5 @@
 {
   "scripts": {
     "start": "node index.js"
-  },
-  "dependencies": {
-    "nanoid": "^3.1.23"
   }
 }
