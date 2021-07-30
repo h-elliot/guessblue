@@ -88,7 +88,7 @@ function FriendsList() {
 				<ul className='added-friends'>
 					<Friends />
 				</ul>
-				<button onClick={checkUnique}>?</button>
+				{/* <button onClick={checkUnique}>?</button> */}
 			</div>
 		</div>
 	);

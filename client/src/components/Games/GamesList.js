@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import Games from './Games';
 import { useFriends } from '../../contexts/FriendsProvider';
 import { useGames } from '../../contexts/GamesProvider';
@@ -9,7 +10,7 @@ function GamesList({ setOpenGame }) {
 
 	// == hooks ==
 	const { friends } = useFriends();
-	const { createGame } = useGames();
+	const { games, createGame } = useGames();
 	const [selectedFriendId, setSelectedFriendId] = useState('');
 	let gamePartner = selectedFriendId;
 
@@ -22,9 +23,22 @@ function GamesList({ setOpenGame }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		console.log(createGame);
+		const gameId = nanoid();
+		console.log(`gameId: ${gameId}`);
 
-		createGame(selectedFriendId);
+		let duplicateGame = false;
+
+		for (let i = 0; i < games.length; i++) {
+			if (games[i].partner === selectedFriendId) {
+				duplicateGame = true;
+				console.log('Sorry, you already have a game with them.');
+				break;
+			}
+		}
+
+		if (!duplicateGame) {
+			createGame(selectedFriendId, gameId);
+		}
 	}
 
 	// == renders ==
@@ -40,9 +54,7 @@ function GamesList({ setOpenGame }) {
 						name='choose-friend'
 						id='choose-friend'
 						onChange={handleSelect}>
-						<option defaultValue='pick a friend'>
-							pick your favorite friend
-						</option>
+						<option defaultValue='pick a friend'>which bud?</option>
 						{friends.map((friend) => (
 							<option value={friend.id} label={friend.name} key={friend.id}>
 								{friend.name}

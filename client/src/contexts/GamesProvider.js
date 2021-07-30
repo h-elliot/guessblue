@@ -18,21 +18,17 @@ export function GamesProvider({ children, id }) {
 	//* HOW createGame WORKS
 	// [1]	takes in the partner you want a game with
 	// [2]	checks if a game exists already with that partner
-	//[2.1]  - if one does exist, error
+	//![2.1]  - if one does exist, error
 	// [3]	sets the Games state to the current games + the desired game
 
-	function createGame(partner) {
+	function createGame(partner, gameId) {
 		// [1]
+		console.log(`gameId: ${gameId}`);
 		setGames((prevGames) => {
 			// [2]
-			if (prevGames.includes(partner)) {
-				// [2.1]
-				console.log('Sorry, you already have a game with them.');
-				//? launch game?
-				return;
-			}
+
 			// [3]
-			return [...prevGames, { partner, messages: [] }];
+			return [...prevGames, { gameId, partner, messages: [] }];
 		});
 	}
 
@@ -95,46 +91,46 @@ export function GamesProvider({ children, id }) {
 	});
 
 	// ==================== current example of a game: ====================
-	//?		208ad4fe cognito -> b2eea18c rook
-	//*	[
-	//*		{
-	//*			partner: 'b2eea18c-d80c-4f3f-bd7f-dc838bdb18c2',
-	//*			messages: [
-	//*				{ sender: '208ad4fe-e430-4132-a88f-c39f0c5b7d5f', text: 'hiiii rook!' },
-	//*			],
-	//*			name: 'rook',
-	//*			index: [0],
-	//*		},
-	//*		{
-	//*			partner: '208ad4fe-e430-4132-a88f-c39f0c5b7d5f',
-	//*			messages: [
-	//*				{ sender: 'b2eea18c-d80c-4f3f-bd7f-dc838bdb18c2', text: 'cognito...?' },
-	// 				sent from same game that appeared when the first msg sent
-	//! 			note that there is no index nor name
-	//*			],
-	//*		},
-	//*	];
-	//?		b2eea18c rook -> 208ad4fe cognito
-	//*	[
-	//* 		{
-	//*			partner: 'b2eea18c-d80c-4f3f-bd7f-dc838bdb18c2',
-	//*			messages: [
-	//*				{ sender: '208ad4fe-e430-4132-a88f-c39f0c5b7d5f', text: 'hiiii rook!' },
-	//*				{ sender: 'b2eea18c-d80c-4f3f-bd7f-dc838bdb18c2', text: 'hi cognito' },
-	// 				sent from same game that appeared when the first msg sent
-	//! 			note that there is no index nor name
-	//*			],
-	//*		},
-	//*		{
-	//*			partner: '208ad4fe-e430-4132-a88f-c39f0c5b7d5f',
-	//*			messages: [
-	//*				{ sender: 'b2eea18c-d80c-4f3f-bd7f-dc838bdb18c2', text: 'cognito...?' },
-	//*			],
-	//*			name: 'cognito',
-	//*			index: [1],
-	//*		},
-	//* ];
+	//		PN9ZQmcbBI3o9PgWipnM_ tues >>> a6I5D0lybwCNWxTHeS5Y1 wed
+	// [
+	// 	{
+	//* 		partner: 'a6I5D0lybwCNWxTHeS5Y1',
+	// 		messages: [
+	//*			{ sender: 'PN9ZQmcbBI3o9PgWipnM_', text: 'Wednes, do you see this?' },
+	//todo		{ sender: 'a6I5D0lybwCNWxTHeS5Y1', text: 'i see u sent me a msg!' },
+	// 		],
+	//!	 this message appears with no name in the gameslist
+	//!  the json data here has no 'name:' or 'index:'
+	// 	},
+	// ];
+
+	//?		a6I5D0lybwCNWxTHeS5Y1 wed >>> PN9ZQmcbBI3o9PgWipnM_ tues
+	// [
+	// 	{
+	//todo 		partner: 'a6I5D0lybwCNWxTHeS5Y1',
+	// 		messages: [
+	//* 			{ sender: 'PN9ZQmcbBI3o9PgWipnM_', text: 'Wednes, do you see this?' },
+	// 		],
+	//!		name: 'wednesday',
+	//! 	index: [0],
+	// 	},
+	// ];
 	// ====================================================================
+
+	//* HOW deleteGame WORKS
+	// [1]	takes in the gameId (/or game partner?)
+	// [2]	filter allows all games through that dont
+	//		match the selected game ID
+	// [3]	sets games to the ones that pass the filter
+
+	function deleteGame(selectedGameId) {
+		console.log(`gameId: ${selectedGameId}`);
+		console.log(`game info: \n ${games.gameId === selectedGameId}`);
+		setGames(games.filter((g) => games.gameId !== selectedGameId));
+	}
+
+	//todo =================================================================
+	//todo =================================================================
 
 	//* HOW addMessageTC WORKS:
 	// [1] receives incoming info about a message,
@@ -218,6 +214,7 @@ export function GamesProvider({ children, id }) {
 		sendMessage,
 		selectGameIndex: setSelectedGameIndex,
 		createGame,
+		deleteGame,
 	};
 
 	return (

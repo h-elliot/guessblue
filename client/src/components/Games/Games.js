@@ -2,12 +2,18 @@ import React from 'react';
 import { useGames } from '../../contexts/GamesProvider';
 
 function Games({ setOpenGame }) {
-	const { games, selectGameIndex } = useGames();
+	const { games, selectGameIndex, deleteGame } = useGames();
 
 	function handleClick(e) {
 		e.preventDefault();
 		selectGameIndex(e.target.value);
 		setOpenGame(true);
+	}
+
+	function handleDelete(e) {
+		e.preventDefault();
+		console.log(`e value: ${e.target.value}`);
+		deleteGame(e.target.value);
 	}
 
 	return (
@@ -19,11 +25,13 @@ function Games({ setOpenGame }) {
 							<li
 								key={game.partner}
 								value={game.index}
-								name={game.name}
+								name={game.gameId}
 								onClick={handleClick}>
 								{game.name}
 							</li>
-							<button>🗑️</button>
+							<button value={game.gameId} onClick={handleDelete}>
+								🗑️
+							</button>
 						</div>
 					);
 				})}

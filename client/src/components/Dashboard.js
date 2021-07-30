@@ -12,7 +12,7 @@ function Dashboard({ id }) {
 
 	// == states | refs | contexts ==
 	const { selectedGame } = useGames();
-	const [toggleTab, setToggleTab] = useState(false);
+	const [toggleTab, setToggleTab] = useState(true);
 	const [openGame, setOpenGame] = useState(false);
 	// == functions | variables ==
 

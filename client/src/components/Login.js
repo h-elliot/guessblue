@@ -1,11 +1,17 @@
 import React, { useRef } from 'react';
 import { nanoid } from 'nanoid';
-import { v4 as uuidv4 } from 'uuid';
 import './styles/Login.css';
 
 function Login({ onIdSubmit }) {
+	// == notes ==
+	// we imported setId as onIdSubmit
+
+	// useRef is like state but it doesn't cause a rerender
+
+	// == hooks ==
 	const idRef = useRef();
 
+	// == functions | variables ==
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -13,9 +19,10 @@ function Login({ onIdSubmit }) {
 	}
 
 	function createNewId(e) {
-		// onIdSubmit(uuidv4());
 		onIdSubmit(nanoid());
 	}
+
+	// == renders ==
 	return (
 		<div className='login'>
 			<form onSubmit={handleSubmit}>
