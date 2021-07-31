@@ -5,14 +5,13 @@ import { useFriends } from '../../contexts/FriendsProvider';
 import { useGames } from '../../contexts/GamesProvider';
 import '../styles/GamesList.css';
 
-function GamesList({ setOpenGame }) {
+function GamesList({ setOpenGame, id }) {
 	// == notes ==
 
 	// == hooks ==
 	const { friends } = useFriends();
 	const { games, createGame } = useGames();
 	const [selectedFriendId, setSelectedFriendId] = useState('');
-	let gamePartner = selectedFriendId;
 
 	// == functions | variables ==
 
@@ -24,11 +23,12 @@ function GamesList({ setOpenGame }) {
 		e.preventDefault();
 
 		const gameId = nanoid();
+		const players = [selectedFriendId, id];
 
 		let duplicateGame = false;
 
 		for (let i = 0; i < games.length; i++) {
-			if (games[i].partner === selectedFriendId) {
+			if (games[i].players === players) {
 				duplicateGame = true;
 				console.log('Sorry, you already have a game with them.');
 				break;
@@ -36,7 +36,7 @@ function GamesList({ setOpenGame }) {
 		}
 
 		if (!duplicateGame) {
-			createGame(selectedFriendId, gameId);
+			createGame(players, gameId);
 		}
 	}
 

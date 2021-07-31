@@ -4,7 +4,7 @@ import ColorPicker from './InnerGameComponents/ColorPicker';
 import ChatHistory from './InnerGameComponents/ChatHistory';
 import '../styles/Modal.css';
 
-function OpenGame({ openGame, setOpenGame }) {
+function OpenGame({ openGame, setOpenGame, id }) {
 	// == notes ==
 
 	// == hooks ==
@@ -24,7 +24,9 @@ function OpenGame({ openGame, setOpenGame }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		sendMessage(selectedGame.partner, text);
+		const players = [selectedGame.partner, id];
+
+		sendMessage(players, text, selectedGame.gameId);
 		setText('');
 	}
 

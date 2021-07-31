@@ -20,10 +20,14 @@ function Dashboard({ id }) {
 
 	return (
 		<div className='dashboard'>
-			<OpenGame openGame={openGame} setOpenGame={setOpenGame} />
+			<OpenGame openGame={openGame} setOpenGame={setOpenGame} id={id} />
 
 			<div className='dash-main'>
-				{toggleTab ? <GamesList setOpenGame={setOpenGame} /> : <FriendsList />}
+				{toggleTab ? (
+					<GamesList setOpenGame={setOpenGame} id={id} />
+				) : (
+					<FriendsList />
+				)}
 			</div>
 			<footer>
 				<div className='id-display'>

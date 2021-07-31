@@ -5,6 +5,7 @@ const path = require('path');
 app.use(cors());
 
 const server = require('http').createServer(app);
+const PORT = process.env.PORT || 4040;
 
 // have node serve the files for our built react app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -25,8 +26,6 @@ const io = require('socket.io')(server, {
 		methods: ['GET', 'POST'],
 	},
 });
-
-const PORT = process.env.PORT || 4040;
 
 server.listen(PORT, () => {
 	console.log(`📡 SERVER RUNNING ON ${PORT} 💻`);
