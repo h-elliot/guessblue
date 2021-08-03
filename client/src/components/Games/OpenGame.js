@@ -24,6 +24,7 @@ function OpenGame({ openGame, setOpenGame, id }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 
+		// WDS-Kyle uses map() on the players (recipients) but we only have a 2 player game
 		const players = [selectedGame.partner, id];
 
 		sendMessage(players, text, selectedGame.gameId);

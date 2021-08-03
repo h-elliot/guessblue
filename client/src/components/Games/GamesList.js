@@ -36,7 +36,7 @@ function GamesList({ setOpenGame, id }) {
 		}
 
 		if (!duplicateGame) {
-			createGame(players, gameId);
+			createGame(selectedFriendId, players, gameId);
 		}
 	}
 

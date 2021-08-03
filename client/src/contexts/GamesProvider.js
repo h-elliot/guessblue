@@ -15,80 +15,68 @@ export function GamesProvider({ children, id }) {
 	const { friends } = useFriends();
 	const socket = useSocket();
 
-	//* HOW createGame WORKS
-	// [1]	takes in the partner you want a game with
-	// [2]	sets the Games state to the current games + the desired game
+	//? =====================================================
 
-	function createGame(partner, gameId) {
-		// [1]
-		console.log(`gameId: ${gameId}`);
+	function createGame(partner, players, gameId) {
+		console.log(`createGame:`);
+		console.log(`players- ${players}`);
+		console.log(`gameId- ${gameId}`);
 		setGames((prevGames) => {
-			return [...prevGames, { gameId, partner, messages: [] }];
+			return [...prevGames, { gameId, partner, players, messages: [] }];
 			// [2]
 		});
 	}
 
-	// * HOW THIS double-loop WORKS
-	// here is where we save the partner's name to a game
-	// [1]	for each game and each friend
-	// [2]	if a friend ID matches the current partner ID,
-	// [3]	add a key for partner's name
 	for (let i = 0; i < games.length; i++) {
-		// [1.1] for each game
+		// [ for each game
 		for (let j = 0; j < friends.length; j++) {
-			// [1.2] for each friend
+			//  for each friend
 			if (games[i].partner === friends[j].id) {
-				//	[2]
+				//	if the ID for partner at the current index of games is the same as the the ID of a friend...
 				const partnerName = friends[j].name;
-				//  [3]
+				//
 				games[i].name = partnerName;
 				games[i].index = [i];
 			}
 		}
 	}
 
-	//* HOW formattedGames WORKS
-	// [1]	map the unformatted games into games
-	//		that have an array of message objects
-	// [2]	map the messages array of objects, & for each one
-	// [3]	find the friend from friends that has the
-	//		same ID as sender
-	// [4]	assign "name" to either the friend's name
-	//		(matching the friend ID) |OR| the sender id
-	// [5]	assign "fromMe" to messages that are from the
-	//		POV player (you, not your friends)
-	// [6]	FORMATTED MESSAGES object: the message, the senderName, and fromMe
-	// [7]	FORMATTED GAME: includes everything about the game,
-	//		the array of formatted messages, and the
-	//		currently selected game
+	//? =====================================================
+
 	const formattedGames = games.map((game, index) => {
 		// [1]
-		const selected = index === selectedGameIndex;
-		const gameId = game.gameId;
-		const messages = game.messages.map((message) => {
-			// [2]
+		const players = (game.partner = () => {
+			const partner = game.partner;
 			const friend = friends.find((friend) => {
-				// [3]
+				return friend.id === partner;
+			});
+
+			const name = (friend && friend.name) || partner;
+			// ^ used for displaying at top of game window
+
+			return { id, partner, name };
+		});
+
+		const messages = game.messages.map((message) => {
+			const friend = friends.find((friend) => {
 				return friend.id === message.sender;
 				// "friend" now refers to the friend ID that matches sender
 			});
+
 			const name = (friend && friend.name) || message.sender;
-			// [4]
-			const fromMe = id === message.sender;
-			// [5]
+			const fromMe = id === message.sender; // boolean
+
 			return { ...message, senderName: name, fromMe };
-			// [6]
 		});
-		return { ...game, gameId, messages, selected };
+
+		const selected = index === selectedGameIndex;
+		const gameId = game.gameId;
+
+		return { ...game, gameId, players, messages, selected };
 		// [7]
 	});
 
-	//* HOW deleteGame WORKS
-	// [1]	takes in the gameId
-	// [2]	filter allows all games through that dont
-	//		match the gameToDelete
-	// [3]	sets games to the ones that pass the filter
-	//!		it dont work tho.....
+	//? =====================================================
 
 	function deleteGame(gameToDelete) {
 		console.log(`gameId: ${gameToDelete}`);
@@ -98,65 +86,47 @@ export function GamesProvider({ children, id }) {
 			(game) => game['gameId'] !== gameToDelete
 		);
 
-		console.log(`freshNewGames:`);
-		console.log(JSON.stringify(freshNewGames));
 		setGames(freshNewGames);
 	}
 
 	//todo =================================================================
 	//todo =================================================================
 
-	//* HOW addMessageTC WORKS:
-	// [1] receives incoming info about a message,
-	// [2] checks if a game exists with the current partner,
-	// [2.1] if it matches, add the new message to match partner's messages array
-	// [2.2] if it doesnt, create a new game object with the partner, and new message
 	const addMessageToConversation = useCallback(
 		({ players, text, gameId, sender }) => {
 			// [1] function receives incoming info about a message
-			// players = RECEIVE the message
-			// sender = SENT the message
-			// text = the message
-			console.log(`📟 ${sender} to ${players}: \n${JSON.stringify(text)}`); //✅ console log the message
+			console.log(`📟 ${sender} to game ${gameId}: \n${JSON.stringify(text)}`); //✅
+
 			setGames((prevGames) => {
-				// setGames takes the previous games and...
 				let gameMatches = false;
-				// gameMatches is false by default, and will change to true
-				// if there's a corresponding game with the specified partner
 				const newMessage = { sender, text };
-				const updatedGame = prevGames.map((game) => {
-					// takes all the previous games and copies them,
-					// for each of the games, check if the partners match
-					if (game.players === players) {
+
+				const newGames = prevGames.map((game) => {
+					// for each of the games, check if the players match
+					if (arrayEquality(game.players, players)) {
 						gameMatches = true;
-						// if the gameId in the new game matches an
-						// existing game, return that game, the messages,
-						// and the newest message on the end
 						return {
 							...game,
 							messages: [...game.messages, newMessage],
 						};
 					}
-					// if the gameId doesnt match, the
-					// function wont do any of that
 					return game;
 				});
 
-				// once we've checked for a matching game, if there
-				// indeed was one, then return the updatedGame
-				// object as the newest version of that game
 				if (gameMatches) {
-					return updatedGame;
+					return newGames;
 				} else {
-					// if gameMatches is false
+					//* incoming game from friend
 					// return all the previous games, along
-					// with the new message and partner as a new game
+					// with the new message and players as a new game
 					return [...prevGames, { players, messages: [newMessage] }];
 				}
 			});
 		},
 		[setGames]
 	);
+
+	//? =====================================================
 
 	useEffect(() => {
 		if (!socket) {
@@ -169,12 +139,7 @@ export function GamesProvider({ children, id }) {
 		return () => socket.off('receive-message');
 	}, [socket, addMessageToConversation]);
 
-	//* HOW sendMessage WORKS
-	// [1]	it takes in the partner (who the message is sent to)
-	//		and the text of the message
-	// [2]	it then emits to the server the "send-message"
-	//		custom event, through its socket
-	// [3]	next it add the message to conversation
+	//? =====================================================
 
 	// players = [selectedGame.partner, id];
 	function sendMessage(players, text, gameId) {
@@ -182,6 +147,9 @@ export function GamesProvider({ children, id }) {
 
 		addMessageToConversation({ players, text, gameId, sender: id });
 	}
+
+	//todo =================================================================
+	//todo =================================================================
 
 	const exportValue = {
 		games: formattedGames,
@@ -197,4 +165,21 @@ export function GamesProvider({ children, id }) {
 			{children}
 		</GamesContext.Provider>
 	);
+}
+
+//todo =================================================================
+//todo =================================================================
+
+function arrayEquality(a, b) {
+	if (a.length !== b.length) return false;
+
+	a.sort();
+	b.sort();
+
+	return a.every((element, index) => {
+		return element === b[index];
+		// if every element of array A is equal to
+		// every element of array B at the same index,
+		// the arrays are equal
+	});
 }
