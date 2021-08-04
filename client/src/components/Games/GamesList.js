@@ -23,7 +23,11 @@ function GamesList({ setOpenGame, id }) {
 		e.preventDefault();
 
 		const gameId = nanoid();
+		const partner = selectedFriendId;
 		const players = [selectedFriendId, id];
+		players.sort();
+
+		console.log(`players: ${players}`);
 
 		let duplicateGame = false;
 
@@ -36,9 +40,9 @@ function GamesList({ setOpenGame, id }) {
 		}
 
 		if (!duplicateGame) {
-			createGame(selectedFriendId, players, gameId);
+			createGame(partner, players, gameId);
 		}
-	}
+	} // closes handleSubmit
 
 	// == renders ==
 

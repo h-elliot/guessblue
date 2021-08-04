@@ -18,45 +18,30 @@ export function GamesProvider({ children, id }) {
 	//? =====================================================
 
 	function createGame(partner, players, gameId) {
+		const friend = friends.find((friend) => friend.id === partner);
+
+		const partnerName = friend && friend.name;
+
 		console.log(`createGame:`);
-		console.log(`players- ${players}`);
 		console.log(`gameId- ${gameId}`);
+		console.log(`players- ${players}`);
+		console.log(`partner- ${partner}`);
+		console.log(`partnerName- ${partnerName}`);
+
 		setGames((prevGames) => {
-			return [...prevGames, { gameId, partner, players, messages: [] }];
-			// [2]
+			return [
+				...prevGames,
+				{ gameId, players, partner, partnerName, messages: [] },
+			];
 		});
 	}
-
 	for (let i = 0; i < games.length; i++) {
-		// [ for each game
-		for (let j = 0; j < friends.length; j++) {
-			//  for each friend
-			if (games[i].partner === friends[j].id) {
-				//	if the ID for partner at the current index of games is the same as the the ID of a friend...
-				const partnerName = friends[j].name;
-				//
-				games[i].name = partnerName;
-				games[i].index = [i];
-			}
-		}
+		games[i].index = [i];
 	}
 
 	//? =====================================================
 
 	const formattedGames = games.map((game, index) => {
-		// [1]
-		const players = (game.partner = () => {
-			const partner = game.partner;
-			const friend = friends.find((friend) => {
-				return friend.id === partner;
-			});
-
-			const name = (friend && friend.name) || partner;
-			// ^ used for displaying at top of game window
-
-			return { id, partner, name };
-		});
-
 		const messages = game.messages.map((message) => {
 			const friend = friends.find((friend) => {
 				return friend.id === message.sender;
@@ -152,8 +137,10 @@ export function GamesProvider({ children, id }) {
 	//todo =================================================================
 
 	const exportValue = {
-		games: formattedGames,
-		selectedGame: formattedGames[selectedGameIndex],
+		// games: formattedGames,
+		// selectedGame: formattedGames[selectedGameIndex],
+		games,
+		selectedGame: games[selectedGameIndex],
 		sendMessage,
 		selectGameIndex: setSelectedGameIndex,
 		createGame,

@@ -13,7 +13,7 @@ function OpenGame({ openGame, setOpenGame, id }) {
 
 	// == functions | variables ==
 
-	let yourPartner = selectedGame ? selectedGame.name : null;
+	let yourPartner = selectedGame ? selectedGame.partnerName : null;
 
 	function closeGame() {
 		setOpenGame(false);
@@ -26,6 +26,11 @@ function OpenGame({ openGame, setOpenGame, id }) {
 
 		// WDS-Kyle uses map() on the players (recipients) but we only have a 2 player game
 		const players = [selectedGame.partner, id];
+
+		console.log(`handleSubmit - sendMessage`);
+		console.log(`players: ${players}`);
+		console.log(`selectedGame.gameId: ${selectedGame.gameId}`);
+		console.log(`text: ${text}`);
 
 		sendMessage(players, text, selectedGame.gameId);
 		setText('');
