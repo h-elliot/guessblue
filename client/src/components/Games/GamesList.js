@@ -24,6 +24,8 @@ function GamesList({ setOpenGame, id }) {
 
 		const gameId = nanoid();
 		const partner = selectedFriendId;
+		const friend = friends.find((friend) => friend.id === partner);
+		const partnerName = friend && friend.name;
 		const players = [selectedFriendId, id];
 		players.sort();
 
@@ -40,7 +42,7 @@ function GamesList({ setOpenGame, id }) {
 		}
 
 		if (!duplicateGame) {
-			createGame(partner, players, gameId);
+			createGame(partner, partnerName, players, gameId);
 		}
 	} // closes handleSubmit
 

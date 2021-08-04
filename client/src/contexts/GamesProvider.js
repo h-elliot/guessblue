@@ -17,16 +17,11 @@ export function GamesProvider({ children, id }) {
 
 	//? =====================================================
 
-	function createGame(partner, players, gameId) {
-		const friend = friends.find((friend) => friend.id === partner);
-
-		const partnerName = friend && friend.name;
-
+	function createGame(partner, partnerName, players, gameId) {
 		console.log(`createGame:`);
 		console.log(`gameId- ${gameId}`);
 		console.log(`players- ${players}`);
 		console.log(`partner- ${partner}`);
-		console.log(`partnerName- ${partnerName}`);
 
 		setGames((prevGames) => {
 			return [
@@ -43,22 +38,15 @@ export function GamesProvider({ children, id }) {
 
 	const formattedGames = games.map((game, index) => {
 		const messages = game.messages.map((message) => {
-			const friend = friends.find((friend) => {
-				return friend.id === message.sender;
-				// "friend" now refers to the friend ID that matches sender
-			});
-
-			const name = (friend && friend.name) || message.sender;
+			const name = game.partnerName || message.sender;
 			const fromMe = id === message.sender; // boolean
 
-			return { ...message, senderName: name, fromMe };
+			return { ...message, name, fromMe };
 		});
 
 		const selected = index === selectedGameIndex;
-		const gameId = game.gameId;
 
-		return { ...game, gameId, players, messages, selected };
-		// [7]
+		return { ...game, messages, selected };
 	});
 
 	//? =====================================================
@@ -79,7 +67,6 @@ export function GamesProvider({ children, id }) {
 
 	const addMessageToConversation = useCallback(
 		({ players, text, gameId, sender }) => {
-			// [1] function receives incoming info about a message
 			console.log(`📟 ${sender} to game ${gameId}: \n${JSON.stringify(text)}`); //✅
 
 			setGames((prevGames) => {
@@ -101,9 +88,8 @@ export function GamesProvider({ children, id }) {
 				if (gameMatches) {
 					return newGames;
 				} else {
-					//* incoming game from friend
-					// return all the previous games, along
-					// with the new message and players as a new game
+					//! new created game is not formatted correctly
+					//todo: maybe create new function to handle this
 					return [...prevGames, { players, messages: [newMessage] }];
 				}
 			});
@@ -137,10 +123,8 @@ export function GamesProvider({ children, id }) {
 	//todo =================================================================
 
 	const exportValue = {
-		// games: formattedGames,
-		// selectedGame: formattedGames[selectedGameIndex],
-		games,
-		selectedGame: games[selectedGameIndex],
+		games: formattedGames,
+		selectedGame: formattedGames[selectedGameIndex],
 		sendMessage,
 		selectGameIndex: setSelectedGameIndex,
 		createGame,
@@ -163,8 +147,8 @@ function arrayEquality(a, b) {
 	a.sort();
 	b.sort();
 
-	return a.every((element, index) => {
-		return element === b[index];
+	return a.every((player, index) => {
+		return player === b[index];
 		// if every element of array A is equal to
 		// every element of array B at the same index,
 		// the arrays are equal

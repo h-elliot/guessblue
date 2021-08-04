@@ -30,7 +30,7 @@ function Games({ setOpenGame }) {
 								value={game.index}
 								name={game.gameId}
 								onClick={handleClick}>
-								{game.name}
+								{game.partnerName}
 							</li>
 							<button value={game.gameId} onClick={handleDelete}>
 								🗑️
