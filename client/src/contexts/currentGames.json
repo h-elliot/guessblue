@@ -1,37 +1,10 @@
 [
 	{
-		"gameId": "H1i5gJQABBHYcz9JunpUN",
+		"gameId": "chr0WsjeLJ3PGpAqU47Dj",
 		"players": ["2ZFE_755xbSMvbZmy3lZ0", "PN9ZQmcbBI3o9PgWipnM_"],
 		"partner": "2ZFE_755xbSMvbZmy3lZ0",
 		"partnerName": "Wee-wee",
-		"messages": [
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "hello." },
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "?" },
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "Can you see me?" },
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "Maybe" }
-		],
+		"messages": [{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "gecko" }],
 		"index": [0]
-	},
-
-	{},
-
-	{
-		"gameId": "WeP1Wu45g9nQwH4sGXxN6",
-		"players": ["2ZFE_755xbSMvbZmy3lZ0", "PN9ZQmcbBI3o9PgWipnM_"],
-		"partner": "PN9ZQmcbBI3o9PgWipnM_",
-		"partnerName": "tutu",
-		"messages": [
-			{ "sender": "2ZFE_755xbSMvbZmy3lZ0", "text": "hmmmmmm nope" },
-			{ "sender": "2ZFE_755xbSMvbZmy3lZ0", "text": "heyy" }
-		],
-		"index": [0]
-	},
-	{
-		"players": ["PN9ZQmcbBI3o9PgWipnM_", "2ZFE_755xbSMvbZmy3lZ0"],
-		"messages": [
-			{ "sender": "2ZFE_755xbSMvbZmy3lZ0", "text": ">:?" },
-			{ "sender": "2ZFE_755xbSMvbZmy3lZ0", "text": "heyy" }
-		],
-		"index": [1]
 	}
 ]

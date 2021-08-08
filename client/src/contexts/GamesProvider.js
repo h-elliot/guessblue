@@ -67,22 +67,18 @@ export function GamesProvider({ children, id }) {
 
 	const addMessageToConversation = useCallback(
 		({ players, text, gameId, sender }) => {
-			console.log(`📟 ${sender} to game ${gameId}: \n${JSON.stringify(text)}`); //✅
+			const thisGame = games.find(({ gameId }) => gameId === gameId);
 
 			setGames((prevGames) => {
-				let gameMatches = false;
+				const gameMatches = games.includes(game.gameId === gameId);
 				const newMessage = { sender, text };
 
 				const newGames = prevGames.map((game) => {
-					// for each of the games, check if the players match
 					if (arrayEquality(game.players, players)) {
-						gameMatches = true;
 						return {
 							...game,
 							messages: [...game.messages, newMessage],
 						};
-						//! new created game is not formatted correctly
-						//todo: maybe create new function to handle this
 					}
 					return game;
 				});
@@ -96,11 +92,6 @@ export function GamesProvider({ children, id }) {
 		},
 		[setGames]
 	);
-
-	// function incomingGameHandler({ players, text, gameId, sender }) {
-	// 	const newMessage = { sender, text };
-	// 	return [...prevGames, { players, messages: [newMessage] }];
-	// }
 
 	//? =====================================================
 
