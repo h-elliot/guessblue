@@ -26,12 +26,16 @@ export function GamesProvider({ children, id }) {
 		setGames((prevGames) => {
 			return [
 				...prevGames,
-				{ gameId, players, partner, partnerName, messages: [] },
+				{
+					gameId,
+					players,
+					partner,
+					partnerName,
+					messages: [],
+					index: games.length,
+				},
 			];
 		});
-	}
-	for (let i = 0; i < games.length; i++) {
-		games[i].index = [i];
 	}
 
 	//? =====================================================
@@ -66,36 +70,41 @@ export function GamesProvider({ children, id }) {
 	//todo =================================================================
 
 	const addMessageToConversation = useCallback(
-		({ players, text, gameId, sender }) => {
+		({ players, text, gameId, sender, partner, partnerName, thisGame }) => {
 			console.log(`📟 ${sender} to game ${gameId}: \n${JSON.stringify(text)}`); //✅
 
 			setGames((prevGames) => {
-				let gameMatches = false;
+				const gameMatches = games.find(
+					(game) => game.gameId === thisGame.gameId
+				);
 				const newMessage = { sender, text };
 
-				const newGames = prevGames.map((game) => {
-					// for each of the games, check if the players match
-					if (arrayEquality(game.players, players)) {
-						gameMatches = true;
-						return {
-							...game,
-							messages: [...game.messages, newMessage],
-						};
-					}
-					return game;
-				});
+				// const newGames = prevGames.map((game) => {
+
+				// 		return {
+				// 			...game,
+				// 			messages: [...game.messages, newMessage],
+				// 		};
+				// 		//! new created game is not formatted correctly
+				// 	}
+				// 	return game;
+				// });
 
 				if (gameMatches) {
-					return newGames;
+					// return newGames;
+					thisGame.messages.push(newMessage);
 				} else {
-					//! new created game is not formatted correctly
-					//todo: maybe create new function to handle this
 					return [...prevGames, { players, messages: [newMessage] }];
 				}
 			});
 		},
 		[setGames]
 	);
+
+	// function incomingGameHandler({ players, text, gameId, sender }) {
+	// 	const newMessage = { sender, text };
+	// 	return [...prevGames, { players, messages: [newMessage] }];
+	// }
 
 	//? =====================================================
 
@@ -114,9 +123,21 @@ export function GamesProvider({ children, id }) {
 
 	// players = [selectedGame.partner, id];
 	function sendMessage(players, text, gameId) {
+		const thisGame = games.find(({ gameId }) => gameId === gameId);
+		const partner = thisGame.partner;
+		const partnerName = thisGame.partnerName;
+
 		socket.emit('send-message', { players, text, gameId });
 
-		addMessageToConversation({ players, text, gameId, sender: id });
+		addMessageToConversation({
+			players,
+			text,
+			gameId,
+			sender: id,
+			partner,
+			partnerName,
+			thisGame,
+		});
 	}
 
 	//todo =================================================================
