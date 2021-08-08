@@ -26,16 +26,12 @@ export function GamesProvider({ children, id }) {
 		setGames((prevGames) => {
 			return [
 				...prevGames,
-				{
-					gameId,
-					players,
-					partner,
-					partnerName,
-					messages: [],
-					index: games.length,
-				},
+				{ gameId, players, partner, partnerName, messages: [] },
 			];
 		});
+	}
+	for (let i = 0; i < games.length; i++) {
+		games[i].index = [i];
 	}
 
 	//? =====================================================
@@ -70,29 +66,29 @@ export function GamesProvider({ children, id }) {
 	//todo =================================================================
 
 	const addMessageToConversation = useCallback(
-		({ players, text, gameId, sender, partner, partnerName, thisGame }) => {
+		({ players, text, gameId, sender }) => {
 			console.log(`📟 ${sender} to game ${gameId}: \n${JSON.stringify(text)}`); //✅
 
 			setGames((prevGames) => {
-				const gameMatches = games.find(
-					(game) => game.gameId === thisGame.gameId
-				);
+				let gameMatches = false;
 				const newMessage = { sender, text };
 
-				// const newGames = prevGames.map((game) => {
-
-				// 		return {
-				// 			...game,
-				// 			messages: [...game.messages, newMessage],
-				// 		};
-				// 		//! new created game is not formatted correctly
-				// 	}
-				// 	return game;
-				// });
+				const newGames = prevGames.map((game) => {
+					// for each of the games, check if the players match
+					if (arrayEquality(game.players, players)) {
+						gameMatches = true;
+						return {
+							...game,
+							messages: [...game.messages, newMessage],
+						};
+						//! new created game is not formatted correctly
+						//todo: maybe create new function to handle this
+					}
+					return game;
+				});
 
 				if (gameMatches) {
-					// return newGames;
-					thisGame.messages.push(newMessage);
+					return newGames;
 				} else {
 					return [...prevGames, { players, messages: [newMessage] }];
 				}
@@ -123,21 +119,9 @@ export function GamesProvider({ children, id }) {
 
 	// players = [selectedGame.partner, id];
 	function sendMessage(players, text, gameId) {
-		const thisGame = games.find(({ gameId }) => gameId === gameId);
-		const partner = thisGame.partner;
-		const partnerName = thisGame.partnerName;
-
 		socket.emit('send-message', { players, text, gameId });
 
-		addMessageToConversation({
-			players,
-			text,
-			gameId,
-			sender: id,
-			partner,
-			partnerName,
-			thisGame,
-		});
+		addMessageToConversation({ players, text, gameId, sender: id });
 	}
 
 	//todo =================================================================
