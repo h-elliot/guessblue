@@ -38,13 +38,14 @@ io.on('connection', (socket) => {
 	socket.join(id);
 	console.log(`🔌 NEW SOCKET ID: ${socket.id} | 🤝 QUERY ID: ${id}`);
 
-	socket.on('send-message', ({ players, partnerName, text, gameId }) => {
+	socket.on('send-message', ({ players, text, gameId }) => {
 		players.forEach((player) => {
-			const playerRecipient = players.filter((p) => p !== player);
+			// const playerRecipient = players.filter((p) => p !== player);
 
-			playerRecipient.push(id);
+			// playerRecipient.push(id);
 			socket.broadcast.to(player).emit('receive-message', {
-				players: playerRecipient,
+				// players: playerRecipient,
+				players,
 				text,
 				gameId,
 				sender: id,
