@@ -13,10 +13,8 @@ function Games({ setOpenGame }) {
 	function handleDelete(e) {
 		e.preventDefault();
 		let gameToDelete = e.target.value;
-		console.log(`gameToDelete:`);
-		console.log(JSON.stringify(gameToDelete));
 
-		deleteGame(e.target.value);
+		deleteGame(gameToDelete);
 	}
 
 	return (

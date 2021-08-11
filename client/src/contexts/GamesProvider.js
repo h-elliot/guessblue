@@ -67,14 +67,21 @@ export function GamesProvider({ children, id }) {
 
 	const addMessageToConversation = useCallback(
 		({ players, text, gameId, sender }) => {
+			let gameMatches = false;
 			const thisGame = games.find(({ gameId }) => gameId === gameId);
 
+			if (games.find(({ gameId }) => gameId === gameId)) {
+				gameMatches = true;
+			}
+			console.log(`gameMatches: ${gameMatches}`);
+			console.log(`thisGame: \n${JSON.stringify(thisGame)}`);
+
 			setGames((prevGames) => {
-				const gameMatches = games.includes(game.gameId === gameId);
 				const newMessage = { sender, text };
 
 				const newGames = prevGames.map((game) => {
 					if (arrayEquality(game.players, players)) {
+						gameMatches = true;
 						return {
 							...game,
 							messages: [...game.messages, newMessage],
@@ -83,10 +90,13 @@ export function GamesProvider({ children, id }) {
 					return game;
 				});
 
+				console.log(gameMatches);
+
 				if (gameMatches) {
 					return newGames;
 				} else {
 					return [...prevGames, { players, messages: [newMessage] }];
+					// createGame(partner: thisGame.partner, partnerName: thisGame.partnerName, players, gameId);
 				}
 			});
 		},

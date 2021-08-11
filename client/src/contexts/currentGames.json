@@ -1,10 +1,13 @@
 [
 	{
-		"gameId": "chr0WsjeLJ3PGpAqU47Dj",
-		"players": ["2ZFE_755xbSMvbZmy3lZ0", "PN9ZQmcbBI3o9PgWipnM_"],
-		"partner": "2ZFE_755xbSMvbZmy3lZ0",
-		"partnerName": "Wee-wee",
-		"messages": [{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "gecko" }],
+		"gameId": "gq_Ir6UpXzDYVXiHKHF6v",
+		"players": ["PN9ZQmcbBI3o9PgWipnM_", "PnfZbBEi8bnO9ZIBa6y9r"],
+		"partner": "PnfZbBEi8bnO9ZIBa6y9r",
+		"partnerName": "wen",
+		"messages": [
+			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "snake" },
+			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "toad" }
+		],
 		"index": [0]
 	}
 ]

@@ -41,17 +41,15 @@ io.on('connection', (socket) => {
 	// when we receive the output 'send-message':
 	// from sendMessage in GamesProvider
 	// this func RECEIVES our partner and text
-	socket.on('send-message', ({ partner, text }) => {
-		console.log(`💬 [${partner}] ${text}`);
-		// and then broadcasts to partner:
-		// object called 'receive-message'
-		// that has partner, sender (with our id)
-		// and the message text
-
-		socket.broadcast.to(partner).emit('receive-message', {
-			partner,
-			sender: id,
-			text,
+	socket.on('send-message', ({ players, text, gameId }) => {
+		players.forEach((player) => {
+			const playerRecipient = players.filter((p) => p !== player);
+			playerRecipient.push(id);
+			socket.broadcast.to(player).emit('receive-message', {
+				players: playerRecipient,
+				sender: id,
+				text,
+			});
 		});
 	});
 });
