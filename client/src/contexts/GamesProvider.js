@@ -18,11 +18,6 @@ export function GamesProvider({ children, id }) {
 	//? =====================================================
 
 	function createGame(partner, partnerName, players, gameId) {
-		console.log(`createGame:`);
-		console.log(`gameId- ${gameId}`);
-		console.log(`players- ${players}`);
-		console.log(`partner- ${partner}`);
-
 		setGames((prevGames) => {
 			return [
 				...prevGames,
@@ -73,17 +68,24 @@ export function GamesProvider({ children, id }) {
 			if (games.find(({ gameId }) => gameId === gameId)) {
 				gameMatches = true;
 			}
-			console.log(`gameMatches: ${gameMatches}`);
-			console.log(`thisGame: \n${JSON.stringify(thisGame)}`);
 
 			setGames((prevGames) => {
 				const newMessage = { sender, text };
 
 				const newGames = prevGames.map((game) => {
-					if (arrayEquality(game.players, players)) {
-						gameMatches = true;
+					if (gameMatches) {
+						const partner = players.filter((player) => player !== id);
+						const partnerName =
+							game.partnerName ||
+							friends.find((friend) => {
+								return friend.name === partner && partner.name;
+							});
+
 						return {
 							...game,
+							partner,
+							partnerName,
+							gameId,
 							messages: [...game.messages, newMessage],
 						};
 					}
@@ -122,7 +124,12 @@ export function GamesProvider({ children, id }) {
 	function sendMessage(players, text, gameId) {
 		socket.emit('send-message', { players, text, gameId });
 
-		addMessageToConversation({ players, text, gameId, sender: id });
+		addMessageToConversation({
+			players,
+			text,
+			gameId,
+			sender: id,
+		});
 	}
 
 	//todo =================================================================

@@ -38,17 +38,16 @@ io.on('connection', (socket) => {
 	socket.join(id);
 	console.log(`🔌 NEW SOCKET ID: ${socket.id} | 🤝 QUERY ID: ${id}`);
 
-	// when we receive the output 'send-message':
-	// from sendMessage in GamesProvider
-	// this func RECEIVES our partner and text
-	socket.on('send-message', ({ players, text, gameId }) => {
+	socket.on('send-message', ({ players, partnerName, text, gameId }) => {
 		players.forEach((player) => {
 			const playerRecipient = players.filter((p) => p !== player);
+
 			playerRecipient.push(id);
 			socket.broadcast.to(player).emit('receive-message', {
 				players: playerRecipient,
-				sender: id,
 				text,
+				gameId,
+				sender: id,
 			});
 		});
 	});
