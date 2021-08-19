@@ -1,13 +1,25 @@
 [
 	{
-		"gameId": "gq_Ir6UpXzDYVXiHKHF6v",
-		"players": ["PN9ZQmcbBI3o9PgWipnM_", "PnfZbBEi8bnO9ZIBa6y9r"],
-		"partner": "PnfZbBEi8bnO9ZIBa6y9r",
-		"partnerName": "wen",
+		"gameId": "olGD14xPkF9Eve55zNE86",
+		"players": ["PN9ZQmcbBI3o9PgWipnM_", "XZV2689RSitvTy49_r37P"],
+		"partner": "XZV2689RSitvTy49_r37P",
+		"partnerName": "W",
 		"messages": [
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "snake" },
-			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "toad" },
-			{ "sender": "PnfZbBEi8bnO9ZIBa6y9r", "text": "dog" }
+			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "W?" },
+			{ "sender": "XZV2689RSitvTy49_r37P", "text": "yes hello!!" }
+		],
+		"index": [0]
+	},
+	{
+		"gameId": "olGD14xPkF9Eve55zNE86",
+		"players": ["PN9ZQmcbBI3o9PgWipnM_", "XZV2689RSitvTy49_r37P"],
+		"partner": "PN9ZQmcbBI3o9PgWipnM_",
+		"partnerName": "tues",
+		"messages": [
+			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "W?" },
+			{ "sender": "XZV2689RSitvTy49_r37P", "text": "yes hello!!" },
+			{ "sender": "PN9ZQmcbBI3o9PgWipnM_", "text": "Hello" },
+			{ "sender": "XZV2689RSitvTy49_r37P", "text": "hiiii!" }
 		],
 		"index": [0]
 	}
