@@ -1,14 +1,16 @@
-# guessblue?
+# guessblue? (or: guesshue?)
 
 ## A two-player color-guessing game.
 
-Two players connect and start with a shared score of 100. Player 1 has a color randomly chosen. They send three clues about the color to Player 2 (without using color names). Player 2 inputs their color guess on a color wheel input, and they have points deducted from their total score equal to the difference between the two colors.
+Two players connect and start with a shared score of 100. Player 1 has a color randomly chosen. They send three clues about the color to Player 2 (without using color names*). Player 2 inputs their color guess on a color wheel input, and they have points deducted from their total score equal to the difference between the two colors.
+
+(*blocked words: black, white, grey, red, orange, yellow, green, blue, purple, violet, pink, magenta, cyan, brown
 
 ## MVP
 
 - Players can connect to each other
 - Game presents randomized color
-- Player 1 can send clues (filtered by blocked color names)
+- Player 1 can send clues (filtered by blocked hue names)
 - Player 2 can input a guess and check it
 - Game displays correct color
 - Game scores the round
@@ -21,6 +23,7 @@ Two players connect and start with a shared score of 100. Player 1 has a color r
 - Live chat
 - Rooms
 - Leaderboard
+- Color image search (for clue ideas)
 
 ## User Stories
 
